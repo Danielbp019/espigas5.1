@@ -16,6 +16,7 @@ Usadas en el proyecto:
 - [font-awesome] - 4.6.1
 - [Html5, CSS3]
 - [xampp-windows] - x64-7.3.25-1
+- [Composer] - No importa la version, es un manejador de archivos.
 
 ## Installation
 

@@ -1,4 +1,4 @@
-<?php if (Auth::check()) { ?>
+<?php if (Auth::check()) {?>
     @extends('layouts/principal') @section('content')
     <!-- Page Content -->
     <div class="container">

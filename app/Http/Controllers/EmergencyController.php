@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Emergency;//modelo para quitar partes  \App\Emergency en las funciones
-use App\Models\Event_type;
 use App\Models\Application_means;
-use Session;//mensajes de variables al usuario
-use Redirect;//redireccionar
+use App\Models\Emergency; //modelo para quitar partes  \App\Emergency en las funciones
+use App\Models\Event_type;
+use Illuminate\Http\Request;
+use Redirect; //mensajes de variables al usuario
+use Session;
+
+//redireccionar
 
 class EmergencyController extends Controller
 {
@@ -20,15 +20,15 @@ class EmergencyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {//ojete que las variables estan en plural y las de la vista en el bucle tambien
+    { //ojete que las variables estan en plural y las de la vista en el bucle tambien
         //scope integrado
-        $emergencys= Emergency::search($request->niu)
+        $emergencys = Emergency::search($request->niu)
             ->join('event_type', 'event_type_idevent_type', '=', 'idevent_type')
-            ->orderby('radicated_received','desc')
-            ->paginate(20);//sacar todos los registros
+            ->orderby('radicated_received', 'desc')
+            ->paginate(20); //sacar todos los registros
         return view('emergency.index', [
-                                        'emergencys' => $emergencys
-                                        ]);
+            'emergencys' => $emergencys,
+        ]);
     }
 
     /**
@@ -38,12 +38,12 @@ class EmergencyController extends Controller
      */
     public function create()
     {
-        $event_type= Event_type::lists('event_type', 'idevent_type');
-        $application_means= Application_means::lists('application_means', 'idapplication_means');
+        $event_type = Event_type::orderBy('event_type')->lists('event_type', 'idevent_type');
+        $application_means = Application_means::orderBy('application_means')->lists('application_means', 'idapplication_means');
         return view('emergency.create', [
-                                            'event_type' => $event_type,
-                                            'application_means' => $application_means
-                                            ]);
+            'event_type' => $event_type,
+            'application_means' => $application_means,
+        ]);
     }
 
     /**
@@ -71,10 +71,10 @@ class EmergencyController extends Controller
             'users_id' => $request['users_id'],
             'user_update' => $request['user_update'],
             'event_type_idevent_type' => $request['event_type_idevent_type'],
-            'application_means_idapplication_means' => $request['application_means_idapplication_means']
+            'application_means_idapplication_means' => $request['application_means_idapplication_means'],
         ]);
-            Session::flash('message', 'Emergencia creada.');
-            return Redirect::to('/emergency');
+        Session::flash('message', 'Emergencia creada.');
+        return Redirect::to('/emergency');
     }
 
     /**
@@ -85,13 +85,13 @@ class EmergencyController extends Controller
      */
     public function show($radicated_received)
     {
-        $emergency=Emergency::select('radicated_received','niu','name_holder','address','bill','identity_applicant','name_applicant','address','phone','event_type','application_means','emergency_network','application_date','time_application','observations')
-        ->join('event_type', 'event_type_idevent_type', '=', 'idevent_type')
+        $emergency = Emergency::select('radicated_received', 'niu', 'name_holder', 'address', 'bill', 'identity_applicant', 'name_applicant', 'address', 'phone', 'event_type', 'application_means', 'emergency_network', 'application_date', 'time_application', 'observations')
+            ->join('event_type', 'event_type_idevent_type', '=', 'idevent_type')
             ->join('application_means', 'application_means_idapplication_means', '=', 'idapplication_means')
-                ->find($radicated_received);//se busca por id
-        return view('emergency.show',[
-                                        'emergency' => $emergency
-                                        ]);
+            ->find($radicated_received); //se busca por id
+        return view('emergency.show', [
+            'emergency' => $emergency,
+        ]);
     }
 
     /**
@@ -102,14 +102,14 @@ class EmergencyController extends Controller
      */
     public function edit($radicated_received)
     {
-        $event_type= Event_type::lists('event_type', 'idevent_type');
-        $application_means= Application_means::lists('application_means', 'idapplication_means');
-        $emergency=Emergency::find($radicated_received);//se busca por id
-        return view('emergency.edit',[
-                                        'emergency'=>$emergency,
-                                        'event_type' => $event_type,
-                                        'application_means' => $application_means
-                                        ]);//se pasa la informacion
+        $event_type = Event_type::orderBy('event_type')->lists('event_type', 'idevent_type');
+        $application_means = Application_means::orderBy('application_means')->lists('application_means', 'idapplication_means');
+        $emergency = Emergency::find($radicated_received); //se busca por id
+        return view('emergency.edit', [
+            'emergency' => $emergency,
+            'event_type' => $event_type,
+            'application_means' => $application_means,
+        ]); //se pasa la informacion
     }
 
     /**
@@ -121,7 +121,7 @@ class EmergencyController extends Controller
      */
     public function update(Request $request, $radicated_received)
     {
-        $emergency=Emergency::find($radicated_received);//se busca por id
+        $emergency = Emergency::find($radicated_received); //se busca por id
         $emergency->fill([
             'niu' => $request['niu'],
             'day_care' => $request['day_care'],
@@ -136,7 +136,7 @@ class EmergencyController extends Controller
             'emergency_network' => $request['emergency_network'],
             'user_update' => $request['user_update'],
             'event_type_idevent_type' => $request['event_type_idevent_type'],
-            'application_means_idapplication_means' => $request['application_means_idapplication_means']
+            'application_means_idapplication_means' => $request['application_means_idapplication_means'],
         ]);
         $emergency->save();
         Session::flash('message', 'Emergencia editada.');
@@ -154,6 +154,6 @@ class EmergencyController extends Controller
         Emergency::destroy($radicated_received);
         Session::flash('message', 'Emergencia eliminada.');
         return Redirect::to('');
-    }  
+    }
 
-}//fin
+} //fin

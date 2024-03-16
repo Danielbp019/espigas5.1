@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Requests\AuthRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AuthRequest;
 use Auth;
-use Session;
+use Illuminate\Http\Request;
 use Redirect;
+use Session;
 
 class AuthController extends Controller
 {
@@ -21,11 +20,11 @@ class AuthController extends Controller
     | authentication of existing users. By default, this controller uses
     | a simple trait to add these behaviors. Why don't you explore it?
     |
-    */
+     */
 
     public function index()
     {
-    
+
     }
 
     /**
@@ -47,17 +46,18 @@ class AuthController extends Controller
     public function store(AuthRequest $request)
     {
         if (Auth::attempt([
-            'name'      =>$request->name, 
-            'password'  =>$request->password,
-            'active'    =>1
-        ])){
+            'name' => $request->name,
+            'password' => $request->password,
+            'active' => 1,
+        ])) {
             return Redirect::to('home');
         }
-        Session::flash('message-error','Datos son incorrectos y/o cuenta desactivada');
+        Session::flash('message-error', 'Datos son incorrectos y/o cuenta desactivada');
         return Redirect::to('/');
     }
-    
-    public function logout(){
+
+    public function logout()
+    {
         Auth::logout();
         return Redirect::to('/');
     }

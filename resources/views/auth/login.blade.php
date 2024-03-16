@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Daniel, col.">
+    <meta name="author" content="Daniel Bautista P., col.">
 
     <title>Espigas</title>
 
@@ -16,7 +16,7 @@
     {!!Html::style('css/small-business.css')!!}
     <!--Font Awesome-->
     {!!Html::style('font-awesome-4.6.1/css/font-awesome.min.css')!!}
-     <!--favicon-->
+    <!--favicon-->
     <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}"/>
 
 </head>
@@ -34,7 +34,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel-body">
-                       @include('errors/loginError')
+                    @include('errors/loginError')
                         @include('errors/alertLogin')
                         {!!Form::open(['route'=>'auth.store', 'method'=>'POST', 'class'=>'form-signin', 'autocomplete'=>'off'])!!} 
                         {{ csrf_field() }}
@@ -43,7 +43,7 @@
                         {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre de usuario', 'autofocus'])!!}
                         <br/>
                         <label for="inputPassword" class="sr-only">Contraseña</label>
-                       {!!Form::password('password',['class'=>'form-control', 'placeholder'=>'Ingresa tu contraseña'])!!}
+                    {!!Form::password('password',['class'=>'form-control', 'placeholder'=>'Ingresa tu contraseña'])!!}
 
                         <!--<div class="checkbox">
                         <label>
@@ -64,25 +64,6 @@
         </div>
     </div>
     <!-- /.container -->
-    
-    
-    
-    
-      <div class="container">
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-md-4">
-                    
-                </div>
-                <div class="col-md-4">
-                    <p>Sistema funciona mejor en Google Chrome y Opera</p>
-                </div>
-                <div class="col-md-4">
-                    
-                </div>
-            </div>
-        </footer>
 
     </div>
     <!-- /.container -->

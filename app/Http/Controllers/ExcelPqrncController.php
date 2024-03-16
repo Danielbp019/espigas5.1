@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Pqrnc;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExcelPqrncController extends Controller
@@ -41,14 +39,14 @@ class ExcelPqrncController extends Controller
      */
     public function store(Request $request)
     {
-            $this->date_from=$request->date_from;
-            $this->date_to=$request->date_to;
-        
-        Excel::create('Pqrnc Reporte Excel', function($excel) {
-            $excel->sheet('Pqrnc Reporte', function($sheet) {
-            $pqrncs = Pqrnc::select('code_dane', 'type_service','niu','user','address','phone','application_means_idapplication_means','answer_date','answer_pqrnc_idanswer_pqrnc','procedure_pqrnc_idprocedure_pqrnc', 'idpqrnc')
-                ->whereBetween('date', [ $this->date_from, $this->date_to])
-                ->get();
+        $this->date_from = $request->date_from;
+        $this->date_to = $request->date_to;
+
+        Excel::create('Pqrnc Reporte Excel', function ($excel) {
+            $excel->sheet('Pqrnc Reporte', function ($sheet) {
+                $pqrncs = Pqrnc::select('code_dane', 'type_service', 'niu', 'user', 'address', 'phone', 'application_means_idapplication_means', 'answer_date', 'answer_pqrnc_idanswer_pqrnc', 'procedure_pqrnc_idprocedure_pqrnc', 'idpqrnc')
+                    ->whereBetween('date', [$this->date_from, $this->date_to])
+                    ->get();
                 $sheet->fromArray($pqrncs);
             });
         })->export('xls');

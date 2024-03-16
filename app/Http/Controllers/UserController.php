@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
-use Session;
+use Illuminate\Http\Request;
 use Redirect;
+use Session;
 
 class UserController extends Controller
 {
@@ -19,12 +17,12 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users= User::search($request->name)
+        $users = User::search($request->name)
             ->role($request->role)
             ->paginate(20);
         return view('user.index', [
-                                    'users' => $users
-                                    ]);
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -46,12 +44,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         User::create([
-                        'name'      =>  $request['name'],
-                        'role'      =>  $request['role'],
-                        'password'  =>  $request['password'],//en el modelo se define la encriptacion
-                        'active'    =>  $request['active'],
-                        ]);
-        Session::flash('message','Usuario Creado Correctamente');
+            'name' => $request['name'],
+            'role' => $request['role'],
+            'password' => $request['password'], //en el modelo se define la encriptacion
+            'active' => $request['active'],
+        ]);
+        Session::flash('message', 'Usuario Creado Correctamente');
         return Redirect::to('/user');
     }
 
@@ -74,10 +72,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user=User::find($id);
-        return view('user.edit',[
-                                    'user' => $user
-                                    ]);
+        $user = User::find($id);
+        return view('user.edit', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -89,10 +87,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user=User::find($id);//se busca por id
+        $user = User::find($id); //se busca por id
         $user->fill($request->all());
         $user->save();
-        Session::flash('message','Usuario Actualizado Correctamente');
+        Session::flash('message', 'Usuario Actualizado Correctamente');
         return Redirect::to('/user');
     }
 
@@ -105,7 +103,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        Session::flash('message','Usuario Eliminado Correctamente');
+        Session::flash('message', 'Usuario Eliminado Correctamente');
         return Redirect::to('/user');
     }
 }

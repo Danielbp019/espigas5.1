@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Planilla;
-use Session;
-use Redirect;
+use Illuminate\Http\Request;
 
 class PlanillaController extends Controller
 {
@@ -18,15 +14,15 @@ class PlanillaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {//busqueda con scope, modificado el modelo tambien
-        $planillas= Planilla::search($request->codigo)
-                                ->orderBy('codigo','DESC')
-                                ->paginate(20);
+    { //busqueda con scope, modificado el modelo tambien
+        $planillas = Planilla::search($request->codigo)
+            ->orderBy('codigo', 'DESC')
+            ->paginate(20);
         return view('planilla.index', [
-                                        'planillas' => $planillas
-                                        ]);
+            'planillas' => $planillas,
+        ]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *

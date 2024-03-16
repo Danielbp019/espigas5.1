@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Pqrnc;
+use App\Models\Pqr;
 use Session;
 use Redirect;
-use App\Pqrnc;
-use App\Pqr;
 
 class HomeController extends Controller
 {
@@ -22,4 +22,4 @@ class HomeController extends Controller
                                 ]);
     }
     
-}//end
+}

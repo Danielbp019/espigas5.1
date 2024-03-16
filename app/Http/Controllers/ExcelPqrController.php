@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Pqr;
-use App\Causal_detail;
+use App\Models\Pqr;
+use App\Models\Causal_detail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExcelPqrController extends Controller
@@ -43,14 +43,13 @@ class ExcelPqrController extends Controller
     {   //se indica que las variables privadas son cada dato del request
         $this->date_from=$request->date_from;
         $this->date_to=$request->date_to;
-            
-         Excel::create('PQR Reporte Excel', function($excel) {
+        
+        Excel::create('PQR Reporte Excel', function($excel) {
             $excel->sheet('PQR Reporte', function($sheet) {
         $pqrs=Pqr::select('department_code','municipality_code','settlement_type','idpqr','date','procedure_pqr_idprocedure_pqr','causal_group','causal_detail_idcausal_detail','niu','bill', 'answer_pqr_idanswer_pqr', 'answer_date', 'rta_niu', 'date_notification', 'notification_pqr_idnotification_pqr', 'sspd')
                 ->join('causal_detail', 'causal_detail_idcausal_detail', '=', 'idcausal_detail')//ojete con la llave: tabla añadida - llave propia osea de pqr - llave añadida
                 ->whereBetween('date', [ $this->date_from, $this->date_to])//se ponen las variables
                 ->get();
-           
                 $sheet->fromArray($pqrs);
             });
         })->export('xls');

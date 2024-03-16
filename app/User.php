@@ -35,10 +35,10 @@ class User extends Model implements AuthenticatableContract,
                                         
     public function scopeSearch($query, $name)
     {
-         if(trim($name) !="")//quita espacios en blanco y mira si no sta vacio
-         {
+        if(trim($name) !="")//quita espacios en blanco y mira si no sta vacio
+        {
             $query->where('name', 'LIKE', "%$name%");   
-         }
+        }
     }
     
     public function scopeRole($query, $role)

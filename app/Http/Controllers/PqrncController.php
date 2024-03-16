@@ -6,14 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Pqrnc;//modelo para quitar partes  \App\Emergency en las funciones
+use App\Models\Pqrnc;//modelo para quitar partes  \App\Emergency en las funciones
+use App\Models\Answer_pqrnc;//modelo para dropdown
+use App\Models\Procedure_pqrnc;//modelo para dropdown
+use App\Models\Application_means;
+use DB;
 use Session;//mensajes de variables al usuario
 use Redirect;//redireccionar
-use App\Answer_pqrnc;//modelo para dropdown
-use App\Procedure_pqrnc;//modelo para dropdown
-use App\Application_means;
-use DB;
-
 
 class PqrncController extends Controller
 {

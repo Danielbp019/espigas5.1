@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;//
-use Session;//
-use Redirect;//
+use App\User;
+use Session;
+use Redirect;
 
 class UserController extends Controller
 {
@@ -45,7 +45,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-         User::create([
+        User::create([
                         'name'      =>  $request['name'],
                         'role'      =>  $request['role'],
                         'password'  =>  $request['password'],//en el modelo se define la encriptacion

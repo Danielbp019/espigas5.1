@@ -30,16 +30,11 @@
     ]);
 
     Route::resource('emergency', 'EmergencyController');//dentro del controlador hay metodos, cada metodo llama una vista
-    
     Route::resource('excelemergency','ExcelEmergencyController');
-    
     Route::resource('user','UserController');
-    
     Route::resource('planilla','PlanillaController');
-    
     Route::resource('pqr','PqrController');
     Route::resource('excelpqr','ExcelPqrController');
-       
     Route::resource('pqrnc','PqrncController');
     Route::resource('excelpqrnc','ExcelPqrncController');
 

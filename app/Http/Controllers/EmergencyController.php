@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Emergency;//modelo para quitar partes  \App\Emergency en las funciones
+use App\Models\Emergency;//modelo para quitar partes  \App\Emergency en las funciones
+use App\Models\Event_type;
+use App\Models\Application_means;
 use Session;//mensajes de variables al usuario
 use Redirect;//redireccionar
-use App\Event_type;
-use App\Application_means;
 
 class EmergencyController extends Controller
 {

@@ -25,7 +25,7 @@ class AuthController extends Controller
 
     public function index()
     {
-         
+    
     }
 
     /**
@@ -46,7 +46,7 @@ class AuthController extends Controller
      */
     public function store(AuthRequest $request)
     {
-         if (Auth::attempt([
+        if (Auth::attempt([
             'name'      =>$request->name, 
             'password'  =>$request->password,
             'active'    =>1

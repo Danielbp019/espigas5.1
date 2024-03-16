@@ -11,7 +11,6 @@ Usadas en el proyecto:
 - [laravelcollective] - 5.1.*
 - [Twitter Bootstrap] - v3.3.6
 - [maatwebsite/excel] - ~2.1.0
-- [barryvdh/laravel-debugbar] - ^2.2
 - [jQuery] - v1.11.1
 - [font-awesome] - 4.6.1
 - [Html5, CSS3]
@@ -20,7 +19,12 @@ Usadas en el proyecto:
 
 ## Installation
 
-Se requiere generar una nueva clave de aplicacion.
+Se requiere primero importar los paquetes.
+
+```sh
+composer install
+```
+Luego generar una nueva clave de aplicacion:
 
 ```sh
 php artisan key:generate

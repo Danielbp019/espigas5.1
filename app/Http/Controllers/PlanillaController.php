@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Planilla;
 use Session;
 use Redirect;
-use App\Planilla;
 
 class PlanillaController extends Controller
 {

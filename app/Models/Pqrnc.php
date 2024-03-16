@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,9 +10,9 @@ class Pqrnc extends Model
     protected $fillable = ['niu', 'user', 'address', 'phone', 'application_means_idapplication_means', 'date', 'time', 'treatment', 'additional_information', 'answer_date', 'execution_date', 'pending', 'code_dane','type_service','user_update', 'users_id', 'answer_pqrnc_idanswer_pqrnc', 'procedure_pqrnc_idprocedure_pqrnc'];
     protected $primaryKey = 'idpqrnc';
     
-     public function scopeSearch($query, $niu)
+    public function scopeSearch($query, $niu)
     {
-         if(trim($niu) !="")//quita espacios en blanco y mira si no sta vacio
+        if(trim($niu) !="")//quita espacios en blanco y mira si no sta vacio
          {
             $query->where('niu', 'LIKE', "%$niu%");   
          }

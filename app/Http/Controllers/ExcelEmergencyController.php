@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Emergency;//modelo para quitar partes  \App\Emergency en las funciones
+use App\Models\Emergency;//modelo para quitar partes  \App\Emergency en las funciones
 use Maatwebsite\Excel\Facades\Excel;//libreria
 
 class ExcelEmergencyController extends Controller
@@ -41,19 +41,16 @@ class ExcelEmergencyController extends Controller
      */
     public function store(Request $request)
     {
-         $this->date_from=$request->date_from;
+        $this->date_from=$request->date_from;
         $this->date_to=$request->date_to;
         
-         Excel::create('Emergencias Reporte Excel', function($excel) {
+        Excel::create('Emergencias Reporte Excel', function($excel) {
             $excel->sheet('Emergencias Reporte', function($sheet) {
- 
                 $emergencys = Emergency::select('radicated_received','niu','acronym','application_means_idapplication_means','application_date','time_application','day_care','hour_care','observations')
                     ->join('event_type', 'event_type_idevent_type', '=', 'idevent_type')
                     ->whereBetween('application_date', [ $this->date_from, $this->date_to])
                     ->get();
- 
                 $sheet->fromArray($emergencys);
- 
             });
         })->export('xls');
     }

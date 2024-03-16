@@ -6,16 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Pqr;
+use App\Models\Pqr;
+use App\Models\Procedure_pqr;
+use App\Models\Causal_detail;
+use App\Models\Answer_pqr;
+use App\Models\Notification_pqr;
+use App\Models\Planilla;
+use App\Models\Application_means;
 use Session;
 use Redirect;
-use App\Procedure_pqr;
-use App\Causal_detail;
-use App\Answer_pqr;
-use App\Notification_pqr;
-use App\Planilla;
-use App\Application_means;
-
 
 class PqrController extends Controller
 {

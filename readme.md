@@ -1,20 +1,21 @@
 # Espigas5.1
 
-_Quejas, reclamos y emergencias. Sin base de datos y con case MB._
+Quejas, reclamos y emergencias. 
+Sin base de datos, código abierto pero no libre, se prohíbe el uso, distribución o cualquier otra acción que no sea aprobada previamente.
+
 
 ## Tecnologias
 
 Usadas en el proyecto:
 
-- [php] - 7.3.25
-- [laravel] - 5.1.*
-- [laravelcollective] - 5.1.*
-- [Twitter Bootstrap] - v3.3.6
-- [maatwebsite/excel] - ~2.1.0
-- [jQuery] - v1.11.1
-- [font-awesome] - 4.6.1
+- [php] - 7.3
+- [laravel] - 5.1
+- [laravelcollective]
+- [Twitter Bootstrap]
+- [maatwebsite/excel]
+- [jQuery]
+- [font-awesome]
 - [Html5, CSS3]
-- [xampp-windows] - x64-7.3.25-1
 - [Composer] - No importa la version, es un manejador de archivos.
 
 ## Installation

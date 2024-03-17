@@ -17,7 +17,7 @@
     <!--Font Awesome-->
     {!!Html::style('font-awesome-4.6.1/css/font-awesome.min.css')!!}
     <!--favicon-->
-    <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" />
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" />
 
 </head>
 
@@ -28,7 +28,8 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -43,13 +44,17 @@
                 <!--dropdown-->
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{{route('home')}}"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a>
+                        <a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"></i>
+                            Inicio</a>
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido, {{ Auth::user()->name }}<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">Bienvenido, {{ Auth::user()->name }}<span
+                                class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{!!URL::to('/logout')!!}"><i class="fa fa-power-off" aria-hidden="true"></i> Cerrar sesión</a></li>
+                            <li><a href="{!!URL::to('/logout')!!}"><i class="fa fa-power-off" aria-hidden="true"></i>
+                                    Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>

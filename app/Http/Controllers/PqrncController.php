@@ -11,16 +11,10 @@ use DB;
 use Illuminate\Http\Request;
 use Redirect; //mensajes de variables al usuario
 use Session;
-
 //redireccionar
 
 class PqrncController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     { //ojete que las variables estan en plural y las de la vista en el bucle tambien
         //scope integrado, se sacan los datos para el request de la vista
@@ -35,11 +29,6 @@ class PqrncController extends Controller
         ]); //vista del index, compact para enviarlos
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     { //se hace el llamado de los select y se ponen en orden los datos, answer_pqrnc lo que se muestra y el idanswer_pqrnc lo que se envia desde el select. luego se carga en la vista normal que ya estaba, agregando compact para enviar los datos.
         $number = DB::select('SELECT idpqrnc FROM pqrnc ORDER BY idpqrnc DESC LIMIT 1'); //consulta del id del pqrnc se envia a la vista y se suma aya
@@ -54,24 +43,18 @@ class PqrncController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        Pqrnc::create([ //Pqrnc::create($request->all());
-            'niu' => $request['niu'],
-            'user' => mb_convert_case($request['user'], MB_CASE_LOWER, "UTF-8"),
-            'address' => mb_convert_case($request['address'], MB_CASE_LOWER, "UTF-8"),
+        Pqrnc::create([
+            'niu' => $this->mb_ucfirst(trim($request['niu']), "UTF-8", true),
+            'user' => $this->mb_ucfirst(trim($request['user']), "UTF-8", true),
+            'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
             'phone' => $request['phone'],
             'application_means_idapplication_means' => $request['application_means_idapplication_means'],
             'date' => $request['date'],
             'time' => $request['time'],
-            'treatment' => mb_convert_case($request['treatment'], MB_CASE_LOWER, "UTF-8"),
-            'additional_information' => mb_convert_case($request['additional_information'], MB_CASE_LOWER, "UTF-8"),
+            'treatment' => $this->mb_ucfirst(trim($request['treatment']), "UTF-8", true),
+            'additional_information' => $this->mb_ucfirst(trim($request['additional_information']), "UTF-8", true),
             'answer_date' => $request['answer_date'],
             'execution_date' => $request['execution_date'],
             'pending' => $request['pending'],
@@ -80,18 +63,12 @@ class PqrncController extends Controller
             'user_update' => $request['user_update'],
             'users_id' => $request['users_id'],
             'answer_pqrnc_idanswer_pqrnc' => $request['answer_pqrnc_idanswer_pqrnc'],
-            'procedure_pqrnc_idprocedure_pqrnc' => $request['procedure_pqrnc_idprocedure_pqrnc'],
+            'procedure_pqrnc_idprocedure_pqrnc' => $request['procedure_pqrnc_idprocedure_pqrnc']
         ]);
         Session::flash('message', 'Pqrnc creada.');
         return Redirect::to('/pqrnc');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($idpqrnc)
     {
         $pqrnc = Pqrnc::select('idpqrnc', 'niu', 'user', 'address', 'phone', 'application_means', 'procedure_pqrnc', 'answer_pqrnc', 'additional_information', 'treatment', 'created_at')
@@ -104,18 +81,12 @@ class PqrncController extends Controller
         ]); //se pasa la informacion
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($idpqrnc)
     { //se agregan los select dinamicos mas el compact para psar la informacion
         $application_means = Application_means::orderBy('application_means')->lists('application_means', 'idapplication_means');
         $answer_pqrnc = Answer_pqrnc::orderBy('answer_pqrnc')->lists('answer_pqrnc', 'idanswer_pqrnc');
         $procedure_pqrnc = Procedure_pqrnc::orderBy('procedure_pqrnc')->lists('procedure_pqrnc', 'idprocedure_pqrnc');
-        $pqrnc = Pqrnc::find($idpqrnc); //se busca por id
+        $pqrnc = Pqrnc::find($idpqrnc);
         return view('pqrnc.edit', [
             'pqrnc' => $pqrnc,
             'answer_pqrnc' => $answer_pqrnc,
@@ -124,42 +95,29 @@ class PqrncController extends Controller
         ]); //se pasa la informacion
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $idpqrnc)
     {
-        $pqrnc = Pqrnc::find($idpqrnc); //se busca por id
-        $pqrnc->fill([ //$pqrnc->fill($request->all());
-            'niu' => mb_convert_case($request['niu'], MB_CASE_LOWER, "UTF-8"),
-            'user' => mb_convert_case($request['user'], MB_CASE_LOWER, "UTF-8"),
-            'address' => mb_convert_case($request['address'], MB_CASE_LOWER, "UTF-8"),
+        $pqrnc = Pqrnc::find($idpqrnc);
+        $pqrnc->fill([
+            'niu' => $this->mb_ucfirst(trim($request['niu']), "UTF-8", true),
+            'user' => $this->mb_ucfirst(trim($request['user']), "UTF-8", true),
+            'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
             'phone' => $request['phone'],
             'application_means_idapplication_means' => $request['application_means_idapplication_means'],
-            'treatment' => mb_convert_case($request['treatment'], MB_CASE_LOWER, "UTF-8"),
-            'additional_information' => mb_convert_case($request['additional_information'], MB_CASE_LOWER, "UTF-8"),
+            'treatment' => $this->mb_ucfirst(trim($request['treatment']), "UTF-8", true),
+            'additional_information' => $this->mb_ucfirst(trim($request['additional_information']), "UTF-8", true),
             'answer_date' => $request['answer_date'],
             'execution_date' => $request['execution_date'],
             'pending' => $request['pending'],
             'user_update' => $request['user_update'],
             'answer_pqrnc_idanswer_pqrnc' => $request['answer_pqrnc_idanswer_pqrnc'],
-            'procedure_pqrnc_idprocedure_pqrnc' => $request['procedure_pqrnc_idprocedure_pqrnc'],
+            'procedure_pqrnc_idprocedure_pqrnc' => $request['procedure_pqrnc_idprocedure_pqrnc']
         ]); //lista con los campos exactos enviados por que si sobran da error
         $pqrnc->save();
         Session::flash('message', 'Pqrnc editada.');
         return Redirect::to('/pqrnc');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($idpqrnc)
     {
         Pqrnc::destroy($idpqrnc);
@@ -167,4 +125,17 @@ class PqrncController extends Controller
         return Redirect::to('/pqrnc');
     }
 
+    //Convertir solo la primera letra en mayuscula de una texto o parrafo.
+    public function mb_ucfirst($str, $encoding = "UTF-8", $lower_str_end = false)
+    {
+        $first_letter = mb_strtoupper(mb_substr($str, 0, 1, $encoding), $encoding);
+        $str_end = "";
+        if ($lower_str_end) {
+            $str_end = mb_strtolower(mb_substr($str, 1, mb_strlen($str, $encoding), $encoding), $encoding);
+        } else {
+            $str_end = mb_substr($str, 1, mb_strlen($str, $encoding), $encoding);
+        }
+        $str = $first_letter . $str_end;
+        return $str;
+    }
 } //fin

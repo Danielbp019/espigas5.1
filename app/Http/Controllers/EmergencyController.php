@@ -14,11 +14,6 @@ use Session;
 
 class EmergencyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     { //ojete que las variables estan en plural y las de la vista en el bucle tambien
         //scope integrado
@@ -31,11 +26,6 @@ class EmergencyController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $event_type = Event_type::orderBy('event_type')->lists('event_type', 'idevent_type');
@@ -46,12 +36,6 @@ class EmergencyController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         Emergency::create([
@@ -60,11 +44,11 @@ class EmergencyController extends Controller
             'time_application' => $request['time_application'],
             'day_care' => $request['day_care'],
             'hour_care' => $request['hour_care'],
-            'observations' => mb_convert_case($request['observations'], MB_CASE_LOWER, "UTF-8"),
-            'name_holder' => mb_convert_case($request['name_holder'], MB_CASE_LOWER, "UTF-8"),
-            'address' => mb_convert_case($request['address'], MB_CASE_LOWER, "UTF-8"),
+            'observations' => $this->mb_ucfirst(trim($request['observations']), "UTF-8", true),
+            'name_holder' => $this->mb_ucfirst(trim($request['name_holder']), "UTF-8", true),
+            'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
             'bill' => $request['bill'],
-            'name_applicant' => mb_convert_case($request['name_applicant'], MB_CASE_LOWER, "UTF-8"),
+            'name_applicant' => $this->mb_ucfirst(trim($request['name_applicant']), "UTF-8", true),
             'identity_applicant' => $request['identity_applicant'],
             'phone' => $request['phone'],
             'emergency_network' => $request['emergency_network'],
@@ -77,12 +61,6 @@ class EmergencyController extends Controller
         return Redirect::to('/emergency');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($radicated_received)
     {
         $emergency = Emergency::select('radicated_received', 'niu', 'name_holder', 'address', 'bill', 'identity_applicant', 'name_applicant', 'address', 'phone', 'event_type', 'application_means', 'emergency_network', 'application_date', 'time_application', 'observations')
@@ -94,12 +72,6 @@ class EmergencyController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($radicated_received)
     {
         $event_type = Event_type::orderBy('event_type')->lists('event_type', 'idevent_type');
@@ -112,25 +84,18 @@ class EmergencyController extends Controller
         ]); //se pasa la informacion
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $radicated_received)
     {
-        $emergency = Emergency::find($radicated_received); //se busca por id
+        $emergency = Emergency::find($radicated_received);
         $emergency->fill([
             'niu' => $request['niu'],
             'day_care' => $request['day_care'],
             'hour_care' => $request['hour_care'],
-            'observations' => mb_convert_case($request['observations'], MB_CASE_LOWER, "UTF-8"),
-            'name_holder' => mb_convert_case($request['name_holder'], MB_CASE_LOWER, "UTF-8"),
-            'address' => mb_convert_case($request['address'], MB_CASE_LOWER, "UTF-8"),
+            'observations' => $this->mb_ucfirst(trim($request['observations']), "UTF-8", true),
+            'name_holder' => $this->mb_ucfirst(trim($request['name_holder']), "UTF-8", true),
+            'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
             'bill' => $request['bill'],
-            'name_applicant' => mb_convert_case($request['name_applicant'], MB_CASE_LOWER, "UTF-8"),
+            'name_applicant' => $this->mb_ucfirst(trim($request['name_applicant']), "UTF-8", true),
             'identity_applicant' => $request['identity_applicant'],
             'phone' => $request['phone'],
             'emergency_network' => $request['emergency_network'],
@@ -143,12 +108,6 @@ class EmergencyController extends Controller
         return Redirect::to('/emergency');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($radicated_received)
     {
         Emergency::destroy($radicated_received);
@@ -156,4 +115,17 @@ class EmergencyController extends Controller
         return Redirect::to('');
     }
 
+    //Convertir solo la primera letra en mayuscula de una texto o parrafo.
+    public function mb_ucfirst($str, $encoding = "UTF-8", $lower_str_end = false)
+    {
+        $first_letter = mb_strtoupper(mb_substr($str, 0, 1, $encoding), $encoding);
+        $str_end = "";
+        if ($lower_str_end) {
+            $str_end = mb_strtolower(mb_substr($str, 1, mb_strlen($str, $encoding), $encoding), $encoding);
+        } else {
+            $str_end = mb_substr($str, 1, mb_strlen($str, $encoding), $encoding);
+        }
+        $str = $first_letter . $str_end;
+        return $str;
+    }
 } //fin

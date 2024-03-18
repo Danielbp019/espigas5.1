@@ -48,12 +48,15 @@
                 },
                 minLength: 2,
                 select: function (event, ui) {
+                    // Obtener el token CSRF
+                    var token = "{{ csrf_token() }}";
                     $j.ajax({
                         url: "{{ url('valores') }}",
                         type: 'POST',
                         dataType: 'json',
                         data: {
-                            codigo: ui.item.value
+                            codigo: ui.item.value,
+                            _token: token // Enviar el token CSRF
                         }
                     }).done(function (respuesta) {
                         $j("#user").val(respuesta.usuario);
@@ -64,6 +67,7 @@
             });
         });
     </script>
+
 
     <!-- Custom CSS -->
     {!!Html::style('css/small-business.css')!!}

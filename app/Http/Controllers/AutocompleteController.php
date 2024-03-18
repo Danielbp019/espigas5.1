@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Planilla;
 use DB;
+use Session;
 
 class AutocompleteController extends Controller
 {
@@ -26,11 +27,20 @@ class AutocompleteController extends Controller
     return response()->json($codigos);
 }
 
-    public function obtenerValores(Request $request)
-    {
-        $codigo = $request->input('codigo');
-        $respuesta = DB::table('planilla')->where('codigo', $codigo)->first();
-        return response()->json($respuesta);
+public function obtenerValores(Request $request)
+{
+    // Validar el token CSRF manualmente, se necesita el uso de: use Illuminate\Support\Facades\Session;
+    $token = $request->input('_token');
+    if (!Session::token() === $token) {
+        // El token no coincide, puedes manejar el error aquí
+        abort(403, 'Token CSRF no válido');
     }
+    // Obtener el código enviado en la solicitud
+    $codigo = $request->input('codigo');
+    // Consultar en la base de datos
+    $respuesta = DB::table('planilla')->where('codigo', $codigo)->first();
+    // Retornar la respuesta en formato JSON
+    return response()->json($respuesta);
+}
     
 }

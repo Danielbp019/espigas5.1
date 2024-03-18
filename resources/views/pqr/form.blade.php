@@ -50,22 +50,19 @@
         <div class="form-group">
             <label class="col-md-4 control-label">Identificación del solicitante (*)</label>
             <div class="col-md-6">
-                {!!Form::text('identity_applicant',null,['class'=>'form-control','placeholder'=>'Ingrese identificación
-                del solicitante', 'required'])!!}
+                {!!Form::text('identity_applicant',null,['class'=>'form-control','placeholder'=>'Ingrese identificación del solicitante', 'required'])!!}
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label">Nombre solicitante (*)</label>
             <div class="col-md-6">
-                {!!Form::text('name_applicant',null,['class'=>'form-control','placeholder'=>'Ingrese nombre
-                solicitante', 'required'])!!}
+                {!!Form::text('name_applicant',null,['class'=>'form-control','placeholder'=>'Ingrese nombre solicitante', 'required'])!!}
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label">Dirección de notificación (*)</label>
             <div class="col-md-6">
-                {!!Form::text('address_applicant',null,['class'=>'form-control','placeholder'=>'Ingrese dirección de
-                notificación', 'required'])!!}
+                {!!Form::text('address_applicant',null,['class'=>'form-control','placeholder'=>'Ingrese dirección de notificación', 'required'])!!}
             </div>
         </div>
         <div class="form-group">
@@ -113,8 +110,7 @@
 <div class="form-group">
     <label class="col-md-4 control-label">Información adicional</label>
     <div class="col-md-6">
-        {!!Form::text('additional_information',null,['class'=>'form-control','placeholder'=>'Ingresa la información
-        adicional'])!!}
+        {!!Form::text('additional_information',null,['class'=>'form-control','placeholder'=>'Ingresa la información adicional'])!!}
     </div>
 </div>
 

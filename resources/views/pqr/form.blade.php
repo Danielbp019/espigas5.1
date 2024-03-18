@@ -12,7 +12,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label">Niu (*)</label>
             <div class="col-md-6">
-                {!!Form::text('niu',null,['class'=>'form-control','placeholder'=>'Ingresa el NIU o CC', 'id'=>'niu-input', 'required'])!!}
+                {!!Form::text('niu',null,['class'=>'form-control','placeholder'=>'Ingresa el NIU o CC', 'id'=>'niu', 'required'])!!}
             </div>
         </div>
 

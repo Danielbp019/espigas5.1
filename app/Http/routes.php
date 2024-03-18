@@ -37,5 +37,6 @@ Route::group(['middleware' => 'auth'], function () { //se ponen dentro de un gru
     Route::resource('excelpqr', 'ExcelPqrController');
     Route::resource('pqrnc', 'PqrncController');
     Route::resource('excelpqrnc', 'ExcelPqrncController');
-
+    Route::get('buscarcodigo', 'AutocompleteController@buscarCodigo');
+    Route::post('valores', 'AutocompleteController@obtenerValores');
 });

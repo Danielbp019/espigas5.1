@@ -10,15 +10,67 @@
 
     <title>Espigas</title>
 
-    <!-- Bootstrap Core CSS -->
-    {!!Html::style('css/bootstrap.min.css')!!}
+    <!-- Cargar Bootstrap 3.3.7 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Cargar jQuery UI CSS -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- Cargar Bootstrap 3.3.7 JS y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Cargar jQuery UI desde CDN -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <script>
+        var $j = jQuery.noConflict();
+        $j(document).ready(function () {
+            $j("#niu").autocomplete({
+                source: function (request, response) {
+                    var term = $j("#niu").val();
+
+                    // Verificar si el término es demasiado corto
+                    if (term.length < 2) {
+                        return;
+                    }
+
+                    $j.ajax({
+                        url: "{{ url('buscarcodigo') }}",
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            term: term
+                        },
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    $j.ajax({
+                        url: "{{ url('valores') }}",
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            codigo: ui.item.value
+                        }
+                    }).done(function (respuesta) {
+                        $j("#user").val(respuesta.usuario);
+                        $j("#address").val(respuesta.direccion);
+                        $j("#bill").val(respuesta.factura);
+                    });
+                }
+            });
+        });
+    </script>
+
     <!-- Custom CSS -->
     {!!Html::style('css/small-business.css')!!}
     <!--Font Awesome-->
     {!!Html::style('font-awesome-4.6.1/css/font-awesome.min.css')!!}
     <!--favicon-->
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" />
-
 </head>
 
 <body>
@@ -86,12 +138,6 @@
 
     </div>
     <!-- /.container -->
-
-    <!-- jQuery -->
-    {!!Html::script('js/jquery.js')!!}
-    <!-- Bootstrap Core JavaScript -->
-    {!!Html::script('js/bootstrap.min.js')!!}
-
 </body>
 
 </html>

@@ -43,6 +43,7 @@
                     @foreach($number as $numbers)
                         <?php $suma += $numbers->idpqrnc; ?>
                     @endforeach{{ $suma }}</p>
+                <p>Selecciona el niu y los campos nombre de titular y dirección, se llenaran solos.</p>
             </div>
             <!--end well-->
         </div>

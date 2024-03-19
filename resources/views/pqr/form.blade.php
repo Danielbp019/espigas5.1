@@ -21,7 +21,7 @@
             <div class="col-md-6">
                 <div class="input-group">
                     {!!Form::text('user',null,['class'=>'form-control','placeholder'=>'Ingrese el nombre del titular', 'id'=>'user', 'required', 'readonly'])!!}
-                    <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true"></i> </span>
+                    <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
             <div class="col-md-6">
                 <div class="input-group">
                     {!!Form::text('address',null,['class'=>'form-control','placeholder'=>'Ingrese la dirección', 'id'=>'address', 'required', 'readonly'])!!}
-                    <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true"></i> </span>
+                    <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
             <div class="col-md-6">
                 <div class="input-group">
                     {!!Form::text('bill',null,['class'=>'form-control','placeholder'=>'Ingrese el numero de factura', 'id'=>'bill', 'required', 'readonly'])!!}
-                    <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true"></i> </span>
+                    <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label">Teléfono</label>
             <div class="col-md-6">
-                {!!Form::number('phone',null,['class'=>'form-control','placeholder'=>'Ingrese ingresa el telefono', 'id'=>'phone'])!!}
+                {!!Form::number('phone',null,['class'=>'form-control','placeholder'=>'Ingrese ingresa el telefono', 'id'=>'phone', 'min' => '0'])!!}
             </div>
         </div>
     </div>
@@ -101,7 +101,7 @@
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button"
                     onclick="window.open(' {{ asset('help/causales_2016.pdf') }} ')" /><i
-                    class="fa fa-question" aria-hidden="true"></i></button>
+                    class="fa fa-question" aria-hidden="true" title="Ayuda"></i></button>
             </span>
         </div>
     </div>
@@ -130,7 +130,7 @@
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button"
                     onclick="window.open(' {{ asset('help/tipo_respuesta.html') }} ')" /><i
-                    class="fa fa-question" aria-hidden="true"></i></button>
+                    class="fa fa-question" aria-hidden="true" title="Ayuda"></i></button>
             </span>
         </div>
     </div>
@@ -146,10 +146,10 @@
 <div class="form-group">
     <label class="col-md-4 control-label">Traslado a súper intendencia (*)</label>
     <div class="col-md-6">
-        <select class="form-control" name="sspd" id="sspd">
+        <select class="form-control" name="sspd" id="sspd" required>
             <option value="" disabled selected>Seleccione...</option>
-            <option value=" ">NO</option>
             <option value="<?php echo date(" Y-m-d ") ?>">SI</option>
+            <option value=" ">NO</option>
         </select>
     </div>
 </div>
@@ -165,7 +165,7 @@
     <div class="col-md-6">
         <div class="input-group">
             {!!Form::text('department_code', '15', ['class'=>'form-control', 'id'=>'department_code', 'required', 'readonly'])!!}
-            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true"></i> </span>
+            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
         </div>
     </div>
 </div>
@@ -174,7 +174,7 @@
     <div class="col-md-6">
         <div class="input-group">
             {!!Form::text('municipality_code', '469', ['class'=>'form-control', 'id'=>'municipality_code', 'required', 'readonly'])!!}
-            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true"></i> </span>
+            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
         </div>
     </div>
 </div>
@@ -183,7 +183,7 @@
     <div class="col-md-6">
         <div class="input-group">
             {!!Form::text('settlement_type', '000', ['class'=>'form-control', 'id'=>'settlement_type', 'required', 'readonly'])!!}
-            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true"></i> </span>
+            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
         </div>
     </div>
 </div>

@@ -10,8 +10,16 @@
 
     <title>Espigas</title>
 
-    <!-- Bootstrap Core CSS -->
-    {!!Html::style('css/bootstrap.min.css')!!}
+    <!-- Cargar Bootstrap 3.3.7 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Cargar jQuery UI CSS -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Cargar Bootstrap 3.3.7 JS y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Cargar jQuery UI desde CDN -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
     <!-- Custom CSS -->
     {!!Html::style('css/small-business.css')!!}
     <!--Font Awesome-->
@@ -67,12 +75,6 @@
 
     </div>
     <!-- /.container -->
-
-    <!-- jQuery -->
-    {!!Html::script('js/jquery.js')!!}
-    <!-- Bootstrap Core JavaScript -->
-    {!!Html::script('js/bootstrap.min.js')!!}
-
 </body>
 
 </html>

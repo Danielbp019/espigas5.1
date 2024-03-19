@@ -9,8 +9,8 @@
     <label class="col-md-4 control-label">Nombre de titular(*)</label>
     <div class="col-md-6">
         <div class="input-group">
-            {!!Form::text('user',null,['class'=>'form-control','placeholder'=>'Ingrese el nombre del titular...', 'id'=>'user', 'required'])!!}
-            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true"></i> </span>
+            {!!Form::text('user',null,['class'=>'form-control','placeholder'=>'Ingrese el nombre del titular', 'id'=>'user', 'required', 'readonly'])!!}
+            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
         </div>
     </div>
 </div>
@@ -19,8 +19,8 @@
     <label class="col-md-4 control-label">Dirección(*)</label>
     <div class="col-md-6">
         <div class="input-group">
-            {!!Form::text('address',null,['class'=>'form-control','placeholder'=>'Ingrese la dirección', 'id'=>'address', 'required'])!!}
-            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true"></i> </span>
+            {!!Form::text('address',null,['class'=>'form-control','placeholder'=>'Ingrese la dirección', 'id'=>'address', 'required', 'readonly'])!!}
+            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
         </div>
     </div>
 </div>
@@ -28,7 +28,7 @@
 <div class="form-group">
     <label class="col-md-4 control-label">Telefono</label>
     <div class="col-md-6">
-        {!!Form::number('phone',null,['class'=>'form-control','placeholder'=>'Ingresa el telefono', 'id'=>'phone'])!!}
+        {!!Form::number('phone',null,['class'=>'form-control','placeholder'=>'Ingresa el telefono', 'id'=>'phone', 'min' => '0'])!!}
     </div>
 </div>
 
@@ -47,7 +47,7 @@
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button"
                     onclick="window.open(' {{ asset('help/tipo_tramite_pqnc.html') }} ')" /><i
-                    class="fa fa-question" aria-hidden="true"></i></button>
+                    class="fa fa-question" aria-hidden="true" title="Ayuda"></i></button>
             </span>
         </div>
     </div>
@@ -83,7 +83,7 @@
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button"
                     onclick="window.open(' {{ asset('help/tipo_rta_pqnc.html') }} ')" /><i
-                    class="fa fa-question" aria-hidden="true"></i></button>
+                    class="fa fa-question" aria-hidden="true" title="Ayuda"></i></button>
             </span>
         </div>
     </div>

@@ -42,7 +42,7 @@
                 <p>Los campos de fecha siempre deberán seguir el formato año, mes día. (año-mes-dia)</p>
                 <p>Los campos de hora siempre deberán seguir el formato hora, minutos, segundos. (hora:minutos:segundos)
                 </p>
-                <p>Abre el enlace para consultar el niu, nombre de titular, dirección y factura.</p>
+                <p>Selecciona el niu y los campos nombre de titular, dirección y factura, se llenaran solos.</p>
             </div>
             <!--end well-->
         </div>

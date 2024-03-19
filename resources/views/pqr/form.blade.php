@@ -19,21 +19,30 @@
         <div class="form-group">
             <label class="col-md-4 control-label">Nombre de titular (*)</label>
             <div class="col-md-6">
-                {!!Form::text('user',null,['class'=>'form-control','placeholder'=>'Ingrese el nombre del titular', 'id'=>'user', 'required'])!!}
+                <div class="input-group">
+                    {!!Form::text('user',null,['class'=>'form-control','placeholder'=>'Ingrese el nombre del titular', 'id'=>'user', 'required', 'readonly'])!!}
+                    <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true"></i> </span>
+                </div>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-4 control-label">Dirección (*)</label>
             <div class="col-md-6">
-                {!!Form::text('address',null,['class'=>'form-control','placeholder'=>'Ingrese la dirección', 'id'=>'address', 'required'])!!}
+                <div class="input-group">
+                    {!!Form::text('address',null,['class'=>'form-control','placeholder'=>'Ingrese la dirección', 'id'=>'address', 'required', 'readonly'])!!}
+                    <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true"></i> </span>
+                </div>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-4 control-label">Factura (*)</label>
             <div class="col-md-6">
-                {!!Form::text('bill',null,['class'=>'form-control','placeholder'=>'Ingrese el numero de factura', 'id'=>'bill', 'required'])!!}
+                <div class="input-group">
+                    {!!Form::text('bill',null,['class'=>'form-control','placeholder'=>'Ingrese el numero de factura', 'id'=>'bill', 'required', 'readonly'])!!}
+                    <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true"></i> </span>
+                </div>
             </div>
         </div>
     </div>

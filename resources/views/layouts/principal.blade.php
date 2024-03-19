@@ -22,53 +22,6 @@
     <!-- Cargar jQuery UI desde CDN -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
-    <script>
-        var $j = jQuery.noConflict();
-        $j(document).ready(function () {
-            $j("#niu").autocomplete({
-                source: function (request, response) {
-                    var term = $j("#niu").val();
-
-                    // Verificar si el término es demasiado corto
-                    if (term.length < 2) {
-                        return;
-                    }
-
-                    $j.ajax({
-                        url: "{{ url('buscarcodigo') }}",
-                        type: 'GET',
-                        dataType: 'json',
-                        data: {
-                            term: term
-                        },
-                        success: function (data) {
-                            response(data);
-                        }
-                    });
-                },
-                minLength: 2,
-                select: function (event, ui) {
-                    // Obtener el token CSRF
-                    var token = "{{ csrf_token() }}";
-                    $j.ajax({
-                        url: "{{ url('valores') }}",
-                        type: 'POST',
-                        dataType: 'json',
-                        data: {
-                            codigo: ui.item.value,
-                            _token: token // Enviar el token CSRF
-                        }
-                    }).done(function (respuesta) {
-                        $j("#user").val(respuesta.usuario);
-                        $j("#address").val(respuesta.direccion);
-                        $j("#bill").val(respuesta.factura);
-                    });
-                }
-            });
-        });
-    </script>
-
-
     <!-- Custom CSS -->
     {!!Html::style('css/small-business.css')!!}
     <!--Font Awesome-->

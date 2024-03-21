@@ -99,9 +99,7 @@
         <div class="input-group">
             {!!Form::select('causal_detail_idcausal_detail', $causal_detail, null, ['class'=>'form-control', 'placeholder' => 'Seleccione...', 'id'=>'causal_detail_idcausal_detail', 'required'])!!}
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button"
-                    onclick="window.open(' {{ asset('help/causales_2016.pdf') }} ')" /><i
-                    class="fa fa-question" aria-hidden="true" title="Ayuda"></i></button>
+                <button class="btn btn-default" type="button" onclick="window.open('{{ asset('help/causales_2016.pdf') }}', '_blank')" ><i class="fa fa-question" aria-hidden="true" title="Ayuda"></i></button>
             </span>
         </div>
     </div>
@@ -128,13 +126,55 @@
         <div class="input-group">
             {!!Form::select('answer_pqr_idanswer_pqr', $answer_pqr, null, ['class'=>'form-control', 'placeholder' => 'Seleccione...', 'id'=>'answer_pqr_idanswer_pqr', 'required'])!!}
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button"
-                    onclick="window.open(' {{ asset('help/tipo_respuesta.html') }} ')" /><i
-                    class="fa fa-question" aria-hidden="true" title="Ayuda"></i></button>
+                <!-- Trigger the modal with a button -->
+                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#ModalayudaTipo_respuesta"><i class="fa fa-question" aria-hidden="true" title="Ayuda"></i></button>
             </span>
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div id="ModalayudaTipo_respuesta" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="color:#000;">Tipo de respuesta</h4>
+            </div>
+            <div class="modal-body" style="color:#000;">
+                <p>
+                    <strong>1. Accede.</strong> Cuando el prestador accede a todas las pretensiones del suscriptor o usuario.<br />
+                    <strong>2. Accede parcialmente.</strong> Cuando el prestador accede parcialmente a las pretensiones de
+                    suscriptor o usuario.<br />
+                    <strong>3. No accede.</strong> Cuando el prestador no accede a ninguna de las pretensiones del suscriptor
+                    usuario.<br />
+                    <strong>4. Confirma decisión.</strong> Cuando el prestador confirma la decisión de primera instancia en el
+                    recurso de reposición.<br />
+                    <strong>5. Modifica.</strong> Cuando el prestador modifica parcialmente la decisión de primera instancia en el
+                    recurso de reposición<br />
+                    <strong>6. Revoca.</strong> Cuando el prestador revoca la decisión de primera instancia en el recurso de
+                    reposición<br />
+                    <strong>7. Rechaza.</strong> Cuando se rechaza el trámite de los recursos de reposición o recursos de reposición
+                    en subsidio de apelación.<br />
+                    <strong>8. Traslada por competencia.</strong> Cuando la reclamación no es de competencia de la ESP.<br />
+                    <strong>9. Pendiente de respuesta.</strong> Cuando el prestador aun se encuentra dentro de los términos legales
+                    para dar respuesta o se encuentra dentro de los términos de suspensión por práctica de pruebas.<br />
+                    <strong>10. Sin respuesta.</strong> Cuando para la fecha de reporte se han vencido los términos de ley sin que
+                    se haya emitido respuesta.<br />
+                    <strong>11. Archiva. </strong>Cuando el trámite termina por acuerdo de pago, transacción, conciliación o por
+                    desistimiento presentado por el suscriptor o usuario.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--endmodal-->
 
 <div class="form-group">
     <label class="col-md-4 control-label">Pendiente (*)</label>

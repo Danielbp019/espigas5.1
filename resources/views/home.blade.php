@@ -1,4 +1,4 @@
-<?php if (Auth::check()) {?>
+<?php if (Auth::check()) { ?>
     @extends('layouts/principal') @section('content')
     <!-- Page Content -->
     <div class="container">
@@ -39,7 +39,8 @@
         <div class="row">
             @include('menus.emergency')
             <!-- /.col-md-4 -->
-            @if(Auth::user()->role == 'admin') @include('menus.users') @endif @include('menus.pqr')
+            @if(Auth::user()->role === 'admin') @include('menus.users') @endif
+            @include('menus.pqr')
         </div>
         <!-- /.row end -->
 
@@ -56,4 +57,4 @@
     </div>
     <!-- /.container -->
     @endsection
-    <?php }?>
+<?php } ?>

@@ -19,27 +19,27 @@
                         <p>
                             {!!Form::open(['route'=>'excelpqrnc.store', 'method'=>'POST', 'class'=>'form-horizontal'])!!}
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Fecha desde (*)</label>
-                                <div class="col-md-6">
-                                    {!!Form::date('date_from',null,['class'=>'form-control', 'required'])!!}
-                                </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Fecha desde (*)</label>
+                            <div class="col-md-6">
+                                {!!Form::date('date_from',null,['class'=>'form-control', 'required'])!!}
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Fecha hasta (*)</label>
-                                <div class="col-md-6">
-                                    {!!Form::date('date_to',null,['class'=>'form-control', 'required'])!!}
-                                </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Fecha hasta (*)</label>
+                            <div class="col-md-6">
+                                {!!Form::date('date_to',null,['class'=>'form-control', 'required'])!!}
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar
-                                    </button>
-                                </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar
+                                </button>
                             </div>
-                            {!! Form::close() !!}
+                        </div>
+                        {!! Form::close() !!}
                         </p>
                     </div>
                     <div class="modal-footer">

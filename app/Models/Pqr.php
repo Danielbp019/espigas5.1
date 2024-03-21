@@ -26,5 +26,4 @@ class Pqr extends Model
             $query->where('pending', $pending); //se pasa al controlador
         }
     }
-
 }

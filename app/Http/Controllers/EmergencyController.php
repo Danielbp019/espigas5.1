@@ -7,10 +7,8 @@ use App\Models\Application_means;
 use App\Models\Emergency; //modelo para quitar partes  \App\Emergency en las funciones
 use App\Models\Event_type;
 use Illuminate\Http\Request;
-use Redirect; //mensajes de variables al usuario
-use Session;
-
-//redireccionar
+use Redirect; //redireccionar
+use Session; //mensajes de variables al usuario
 
 class EmergencyController extends Controller
 {
@@ -39,31 +37,31 @@ class EmergencyController extends Controller
     public function store(Request $request)
     {
         try {
-        Emergency::create([
-            'niu' => $request['niu'],
-            'application_date' => $request['application_date'],
-            'time_application' => $request['time_application'],
-            'day_care' => $request['day_care'],
-            'hour_care' => $request['hour_care'],
-            'observations' => $this->mb_ucfirst(trim($request['observations']), "UTF-8", true),
-            'name_holder' => $this->mb_ucfirst(trim($request['name_holder']), "UTF-8", true),
-            'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
-            'bill' => $request['bill'],
-            'name_applicant' => $this->mb_ucfirst(trim($request['name_applicant']), "UTF-8", true),
-            'identity_applicant' => $request['identity_applicant'],
-            'phone' => $request['phone'],
-            'emergency_network' => $request['emergency_network'],
-            'users_id' => $request['users_id'],
-            'user_update' => $request['user_update'],
-            'event_type_idevent_type' => $request['event_type_idevent_type'],
-            'application_means_idapplication_means' => $request['application_means_idapplication_means'],
-        ]);
-        Session::flash('message', 'Emergencia creada.');
-        return Redirect::to('/emergency');
-    } catch (\Exception $e) {
-        Session::flash('error', 'Hubo un problema al crear la Emergencia. Por favor, inténtalo de nuevo.');
-        return Redirect::to('/emergency');
-    }
+            Emergency::create([
+                'niu' => $request['niu'],
+                'application_date' => $request['application_date'],
+                'time_application' => $request['time_application'],
+                'day_care' => $request['day_care'],
+                'hour_care' => $request['hour_care'],
+                'observations' => $this->mb_ucfirst(trim($request['observations']), "UTF-8", true),
+                'name_holder' => $this->mb_ucfirst(trim($request['name_holder']), "UTF-8", true),
+                'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
+                'bill' => $request['bill'],
+                'name_applicant' => $this->mb_ucfirst(trim($request['name_applicant']), "UTF-8", true),
+                'identity_applicant' => $request['identity_applicant'],
+                'phone' => $request['phone'],
+                'emergency_network' => $request['emergency_network'],
+                'users_id' => $request['users_id'],
+                'user_update' => $request['user_update'],
+                'event_type_idevent_type' => $request['event_type_idevent_type'],
+                'application_means_idapplication_means' => $request['application_means_idapplication_means'],
+            ]);
+            Session::flash('message', 'Emergencia creada.');
+            return Redirect::to('/emergency');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Hubo un problema al crear la Emergencia. Por favor, inténtalo de nuevo.');
+            return Redirect::to('/emergency');
+        }
     }
 
     public function show($radicated_received)
@@ -92,42 +90,42 @@ class EmergencyController extends Controller
     public function update(Request $request, $radicated_received)
     {
         try {
-        $emergency = Emergency::find($radicated_received);
-        $emergency->fill([
-            'niu' => $request['niu'],
-            'day_care' => $request['day_care'],
-            'hour_care' => $request['hour_care'],
-            'observations' => $this->mb_ucfirst(trim($request['observations']), "UTF-8", true),
-            'name_holder' => $this->mb_ucfirst(trim($request['name_holder']), "UTF-8", true),
-            'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
-            'bill' => $request['bill'],
-            'name_applicant' => $this->mb_ucfirst(trim($request['name_applicant']), "UTF-8", true),
-            'identity_applicant' => $request['identity_applicant'],
-            'phone' => $request['phone'],
-            'emergency_network' => $request['emergency_network'],
-            'user_update' => $request['user_update'],
-            'event_type_idevent_type' => $request['event_type_idevent_type'],
-            'application_means_idapplication_means' => $request['application_means_idapplication_means'],
-        ]);
-        $emergency->save();
-        Session::flash('message', 'Emergencia editada.');
-        return Redirect::to('/emergency');
-    } catch (\Exception $e) {
-        Session::flash('error', 'Hubo un problema al editar la Emergencia. Por favor, inténtalo de nuevo.');
-        return Redirect::to('/emergency');
-    }
+            $emergency = Emergency::find($radicated_received);
+            $emergency->fill([
+                'niu' => $request['niu'],
+                'day_care' => $request['day_care'],
+                'hour_care' => $request['hour_care'],
+                'observations' => $this->mb_ucfirst(trim($request['observations']), "UTF-8", true),
+                'name_holder' => $this->mb_ucfirst(trim($request['name_holder']), "UTF-8", true),
+                'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
+                'bill' => $request['bill'],
+                'name_applicant' => $this->mb_ucfirst(trim($request['name_applicant']), "UTF-8", true),
+                'identity_applicant' => $request['identity_applicant'],
+                'phone' => $request['phone'],
+                'emergency_network' => $request['emergency_network'],
+                'user_update' => $request['user_update'],
+                'event_type_idevent_type' => $request['event_type_idevent_type'],
+                'application_means_idapplication_means' => $request['application_means_idapplication_means'],
+            ]);
+            $emergency->save();
+            Session::flash('message', 'Emergencia editada.');
+            return Redirect::to('/emergency');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Hubo un problema al editar la Emergencia. Por favor, inténtalo de nuevo.');
+            return Redirect::to('/emergency');
+        }
     }
 
     public function destroy($radicated_received)
     {
         try {
-        Emergency::destroy($radicated_received);
-        Session::flash('message', 'Emergencia eliminada.');
-        return Redirect::to('/emergency');
-    } catch (\Exception $e) {
-        Session::flash('error', 'Hubo un problema al eliminar la Emergencia. Por favor, inténtalo de nuevo.');
-        return Redirect::to('/emergency');
-    }
+            Emergency::destroy($radicated_received);
+            Session::flash('message', 'Emergencia eliminada.');
+            return Redirect::to('/emergency');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Hubo un problema al eliminar la Emergencia. Por favor, inténtalo de nuevo.');
+            return Redirect::to('/emergency');
+        }
     }
 
     //Convertir solo la primera letra en mayuscula de una texto o parrafo.
@@ -143,4 +141,5 @@ class EmergencyController extends Controller
         $str = $first_letter . $str_end;
         return $str;
     }
+
 } //fin

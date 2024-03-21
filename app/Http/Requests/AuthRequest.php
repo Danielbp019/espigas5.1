@@ -28,13 +28,12 @@ class AuthRequest extends Request
             "password"  =>  "required"
         ];
     }
-    
+
     public function messages()
-	{
-	return [
-	'name.required' => 'El campo nombre es requerido!',
-    'password.required' => 'El campo contraseña es requerido!'
-	];
-	}
-    
+    {
+        return [
+            'name.required' => 'El campo nombre es requerido!',
+            'password.required' => 'El campo contraseña es requerido!'
+        ];
+    }
 }

@@ -47,4 +47,4 @@
     </div>
     <!-- /.container -->
     @endsection
-    <?php }?>
+<?php } ?>

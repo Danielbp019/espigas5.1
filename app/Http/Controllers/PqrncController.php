@@ -46,32 +46,32 @@ class PqrncController extends Controller
     public function store(Request $request)
     {
         try {
-        Pqrnc::create([
-            'niu' => $this->mb_ucfirst(trim($request['niu']), "UTF-8", true),
-            'user' => $this->mb_ucfirst(trim($request['user']), "UTF-8", true),
-            'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
-            'phone' => $request['phone'],
-            'application_means_idapplication_means' => $request['application_means_idapplication_means'],
-            'date' => $request['date'],
-            'time' => $request['time'],
-            'treatment' => $this->mb_ucfirst(trim($request['treatment']), "UTF-8", true),
-            'additional_information' => $this->mb_ucfirst(trim($request['additional_information']), "UTF-8", true),
-            'answer_date' => $request['answer_date'],
-            'execution_date' => $request['execution_date'],
-            'pending' => $request['pending'],
-            'code_dane' => $request['code_dane'],
-            'type_service' => $request['type_service'],
-            'user_update' => $request['user_update'],
-            'users_id' => $request['users_id'],
-            'answer_pqrnc_idanswer_pqrnc' => $request['answer_pqrnc_idanswer_pqrnc'],
-            'procedure_pqrnc_idprocedure_pqrnc' => $request['procedure_pqrnc_idprocedure_pqrnc']
-        ]);
-        Session::flash('message', 'Pqrnc creada.');
-        return Redirect::to('/pqrnc');
-    } catch (\Exception $e) {
-        Session::flash('error', 'Hubo un problema al crear la Pqrnc. Por favor, inténtalo de nuevo.');
-        return Redirect::to('/pqrnc');
-    }
+            Pqrnc::create([
+                'niu' => $this->mb_ucfirst(trim($request['niu']), "UTF-8", true),
+                'user' => $this->mb_ucfirst(trim($request['user']), "UTF-8", true),
+                'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
+                'phone' => $request['phone'],
+                'application_means_idapplication_means' => $request['application_means_idapplication_means'],
+                'date' => $request['date'],
+                'time' => $request['time'],
+                'treatment' => $this->mb_ucfirst(trim($request['treatment']), "UTF-8", true),
+                'additional_information' => $this->mb_ucfirst(trim($request['additional_information']), "UTF-8", true),
+                'answer_date' => $request['answer_date'],
+                'execution_date' => $request['execution_date'],
+                'pending' => $request['pending'],
+                'code_dane' => $request['code_dane'],
+                'type_service' => $request['type_service'],
+                'user_update' => $request['user_update'],
+                'users_id' => $request['users_id'],
+                'answer_pqrnc_idanswer_pqrnc' => $request['answer_pqrnc_idanswer_pqrnc'],
+                'procedure_pqrnc_idprocedure_pqrnc' => $request['procedure_pqrnc_idprocedure_pqrnc']
+            ]);
+            Session::flash('message', 'Pqrnc creada.');
+            return Redirect::to('/pqrnc');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Hubo un problema al crear la Pqrnc. Por favor, inténtalo de nuevo.');
+            return Redirect::to('/pqrnc');
+        }
     }
 
     public function show($idpqrnc)
@@ -103,41 +103,41 @@ class PqrncController extends Controller
     public function update(Request $request, $idpqrnc)
     {
         try {
-        $pqrnc = Pqrnc::find($idpqrnc);
-        $pqrnc->fill([
-            'niu' => $this->mb_ucfirst(trim($request['niu']), "UTF-8", true),
-            'user' => $this->mb_ucfirst(trim($request['user']), "UTF-8", true),
-            'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
-            'phone' => $request['phone'],
-            'application_means_idapplication_means' => $request['application_means_idapplication_means'],
-            'treatment' => $this->mb_ucfirst(trim($request['treatment']), "UTF-8", true),
-            'additional_information' => $this->mb_ucfirst(trim($request['additional_information']), "UTF-8", true),
-            'answer_date' => $request['answer_date'],
-            'execution_date' => $request['execution_date'],
-            'pending' => $request['pending'],
-            'user_update' => $request['user_update'],
-            'answer_pqrnc_idanswer_pqrnc' => $request['answer_pqrnc_idanswer_pqrnc'],
-            'procedure_pqrnc_idprocedure_pqrnc' => $request['procedure_pqrnc_idprocedure_pqrnc']
-        ]); //lista con los campos exactos enviados por que si sobran da error
-        $pqrnc->save();
-        Session::flash('message', 'Pqrnc editada.');
-        return Redirect::to('/pqrnc');
-    } catch (\Exception $e) {
-        Session::flash('error', 'Hubo un problema al editar la Pqrnc. Por favor, inténtalo de nuevo.');
-        return Redirect::to('/pqrnc');
-    }
+            $pqrnc = Pqrnc::find($idpqrnc);
+            $pqrnc->fill([
+                'niu' => $this->mb_ucfirst(trim($request['niu']), "UTF-8", true),
+                'user' => $this->mb_ucfirst(trim($request['user']), "UTF-8", true),
+                'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
+                'phone' => $request['phone'],
+                'application_means_idapplication_means' => $request['application_means_idapplication_means'],
+                'treatment' => $this->mb_ucfirst(trim($request['treatment']), "UTF-8", true),
+                'additional_information' => $this->mb_ucfirst(trim($request['additional_information']), "UTF-8", true),
+                'answer_date' => $request['answer_date'],
+                'execution_date' => $request['execution_date'],
+                'pending' => $request['pending'],
+                'user_update' => $request['user_update'],
+                'answer_pqrnc_idanswer_pqrnc' => $request['answer_pqrnc_idanswer_pqrnc'],
+                'procedure_pqrnc_idprocedure_pqrnc' => $request['procedure_pqrnc_idprocedure_pqrnc']
+            ]); //lista con los campos exactos enviados por que si sobran da error
+            $pqrnc->save();
+            Session::flash('message', 'Pqrnc editada.');
+            return Redirect::to('/pqrnc');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Hubo un problema al editar la Pqrnc. Por favor, inténtalo de nuevo.');
+            return Redirect::to('/pqrnc');
+        }
     }
 
     public function destroy($idpqrnc)
     {
         try {
-        Pqrnc::destroy($idpqrnc);
-        Session::flash('message', 'Pqrnc eliminada.');
-        return Redirect::to('/pqrnc');
-    } catch (\Exception $e) {
-        Session::flash('error', 'Hubo un problema al eliminar la Pqrnc. Por favor, inténtalo de nuevo.');
-        return Redirect::to('/pqrnc');
-    }
+            Pqrnc::destroy($idpqrnc);
+            Session::flash('message', 'Pqrnc eliminada.');
+            return Redirect::to('/pqrnc');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Hubo un problema al eliminar la Pqrnc. Por favor, inténtalo de nuevo.');
+            return Redirect::to('/pqrnc');
+        }
     }
 
     //Convertir solo la primera letra en mayuscula de una texto o parrafo.

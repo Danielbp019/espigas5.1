@@ -1,14 +1,14 @@
 /*!
- * Start Bootstrap - Small Business HTML Template (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ * Start Bootstrap - Small Business HTML
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    padding-top: 70px;
+    /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
     height: 100%;
     background-color: #333;
-    color: #fff;/*color del texto*/
+    color: #fff;
+    /*color del texto*/
 }
 
 .navbar-fixed-top .nav {
@@ -22,23 +22,32 @@ body {
 footer {
     padding: 30px 0;
 }
+
 /*arreglos*/
-.well{
-    color: #fff;/* color del texto*/
-    background: rgba(100, 100, 100, .4);/*transparencia*/
+.well {
+    color: #fff;
+    /* color del texto*/
+    background: rgba(100, 100, 100, 0.4);
+    /*transparencia*/
 }
-.panel{
-    color: #fff;/* color del texto*/
-    background: rgba(100, 100, 100, .4);/*transparencia*/
+
+.panel {
+    color: #fff;
+    /* color del texto*/
+    background: rgba(100, 100, 100, 0.4);
+    /*transparencia*/
 }
-.list-group-item{
-    background: rgba(255, 255, 255, .8);
+
+.list-group-item {
+    background: rgba(255, 255, 255, 0.8);
     color: black;
 }
+
 /* ! */
-@media(min-width:768px) {
+@media (min-width: 768px) {
     body {
-        padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+        padding-top: 100px;
+        /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
     }
 
     .navbar-fixed-top .navbar-brand {

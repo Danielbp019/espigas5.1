@@ -48,42 +48,42 @@ class PqrController extends Controller
     public function store(Request $request)
     {
         try {
-        Pqr::create([
-            'month' => $request['month'],
-            'niu' => $request['niu'],
-            'user' => $this->mb_ucfirst(trim($request['user']), "UTF-8", true),
-            'address' =>$this->mb_ucfirst(trim($request['address']), "UTF-8", true),
-            'bill' => $request['bill'],
-            'name_applicant' => $this->mb_ucfirst(trim($request['name_applicant']), "UTF-8", true),
-            'identity_applicant' => $request['identity_applicant'],
-            'address_applicant' => $this->mb_ucfirst(trim($request['address_applicant']), "UTF-8", true),
-            'phone' => $request['phone'],
-            'application_means_idapplication_means' => $request['application_means_idapplication_means'],
-            'additional_information' => $this->mb_ucfirst(trim($request['additional_information']), "UTF-8", true),
-            'treatment' => $this->mb_ucfirst(trim($request['treatment']), "UTF-8", true),
-            'date' => $request['date'],
-            'time' => $request['time'],
-            'pending' => $request['pending'],
-            'sspd' => $request['sspd'],
-            'answer_date' => $request['answer_date'],
-            'rta_niu' => $request['rta_niu'],
-            'date_notification' => $request['date_notification'],
-            'department_code' => $request['department_code'],
-            'municipality_code' => $request['municipality_code'],
-            'settlement_type' => $request['settlement_type'],
-            'causal_detail_idcausal_detail' => $request['causal_detail_idcausal_detail'],
-            'answer_pqr_idanswer_pqr' => $request['answer_pqr_idanswer_pqr'],
-            'procedure_pqr_idprocedure_pqr' => $request['procedure_pqr_idprocedure_pqr'],
-            'notification_pqr_idnotification_pqr' => $request['notification_pqr_idnotification_pqr'],
-            'users_id' => $request['users_id'],
-            'user_update' => $request['user_update']
-        ]);
-        Session::flash('message', 'Pqr creada.');
-        return Redirect::to('/pqr');
-    } catch (\Exception $e) {
-        Session::flash('error', 'Hubo un problema al eliminar la Pqr. Por favor, inténtalo de nuevo.');
-        return Redirect::to('/pqr');
-    }
+            Pqr::create([
+                'month' => $request['month'],
+                'niu' => $request['niu'],
+                'user' => $this->mb_ucfirst(trim($request['user']), "UTF-8", true),
+                'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
+                'bill' => $request['bill'],
+                'name_applicant' => $this->mb_ucfirst(trim($request['name_applicant']), "UTF-8", true),
+                'identity_applicant' => $request['identity_applicant'],
+                'address_applicant' => $this->mb_ucfirst(trim($request['address_applicant']), "UTF-8", true),
+                'phone' => $request['phone'],
+                'application_means_idapplication_means' => $request['application_means_idapplication_means'],
+                'additional_information' => $this->mb_ucfirst(trim($request['additional_information']), "UTF-8", true),
+                'treatment' => $this->mb_ucfirst(trim($request['treatment']), "UTF-8", true),
+                'date' => $request['date'],
+                'time' => $request['time'],
+                'pending' => $request['pending'],
+                'sspd' => $request['sspd'],
+                'answer_date' => $request['answer_date'],
+                'rta_niu' => $request['rta_niu'],
+                'date_notification' => $request['date_notification'],
+                'department_code' => $request['department_code'],
+                'municipality_code' => $request['municipality_code'],
+                'settlement_type' => $request['settlement_type'],
+                'causal_detail_idcausal_detail' => $request['causal_detail_idcausal_detail'],
+                'answer_pqr_idanswer_pqr' => $request['answer_pqr_idanswer_pqr'],
+                'procedure_pqr_idprocedure_pqr' => $request['procedure_pqr_idprocedure_pqr'],
+                'notification_pqr_idnotification_pqr' => $request['notification_pqr_idnotification_pqr'],
+                'users_id' => $request['users_id'],
+                'user_update' => $request['user_update']
+            ]);
+            Session::flash('message', 'Pqr creada.');
+            return Redirect::to('/pqr');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Hubo un problema al eliminar la Pqr. Por favor, inténtalo de nuevo.');
+            return Redirect::to('/pqr');
+        }
     }
 
     public function show($idpqr)
@@ -123,53 +123,53 @@ class PqrController extends Controller
     public function update(Request $request, $idpqr)
     {
         try {
-        $pqr = Pqr::find($idpqr); //se busca por id
-        $pqr->fill([
-            'month' => $request['month'],
-            'niu' => $request['niu'],
-            'user' => $this->mb_ucfirst(trim($request['user']), "UTF-8", true),
-            'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
-            'bill' => $request['bill'],
-            'name_applicant' => $this->mb_ucfirst(trim($request['name_applicant']), "UTF-8", true),
-            'identity_applicant' => $request['identity_applicant'],
-            'address_applicant' => $this->mb_ucfirst(trim($request['address_applicant']), "UTF-8", true),
-            'phone' => $request['phone'],
-            'application_means_idapplication_means' => $request['application_means_idapplication_means'],
-            'additional_information' => $this->mb_ucfirst(trim($request['additional_information']), "UTF-8", true),
-            'treatment' => $this->mb_ucfirst(trim($request['treatment']), "UTF-8", true),
-            'pending' => $request['pending'],
-            'sspd' => $request['sspd'],
-            'answer_date' => $request['answer_date'],
-            'rta_niu' => $request['rta_niu'],
-            'date_notification' => $request['date_notification'],
-            'department_code' => $request['department_code'],
-            'municipality_code' => $request['municipality_code'],
-            'settlement_type' => $request['settlement_type'],
-            'causal_detail_idcausal_detail' => $request['causal_detail_idcausal_detail'],
-            'answer_pqr_idanswer_pqr' => $request['answer_pqr_idanswer_pqr'],
-            'procedure_pqr_idprocedure_pqr' => $request['procedure_pqr_idprocedure_pqr'],
-            'notification_pqr_idnotification_pqr' => $request['notification_pqr_idnotification_pqr'],
-            'user_update' => $request['user_update']
-        ]);
-        $pqr->save();
-        Session::flash('message', 'Pqr editada.');
-        return Redirect::to('/pqr');
-    } catch (\Exception $e) {
-        Session::flash('error', 'Hubo un problema al editar la Pqr. Por favor, inténtalo de nuevo.');
-        return Redirect::to('/pqr');
-    }
+            $pqr = Pqr::find($idpqr); //se busca por id
+            $pqr->fill([
+                'month' => $request['month'],
+                'niu' => $request['niu'],
+                'user' => $this->mb_ucfirst(trim($request['user']), "UTF-8", true),
+                'address' => $this->mb_ucfirst(trim($request['address']), "UTF-8", true),
+                'bill' => $request['bill'],
+                'name_applicant' => $this->mb_ucfirst(trim($request['name_applicant']), "UTF-8", true),
+                'identity_applicant' => $request['identity_applicant'],
+                'address_applicant' => $this->mb_ucfirst(trim($request['address_applicant']), "UTF-8", true),
+                'phone' => $request['phone'],
+                'application_means_idapplication_means' => $request['application_means_idapplication_means'],
+                'additional_information' => $this->mb_ucfirst(trim($request['additional_information']), "UTF-8", true),
+                'treatment' => $this->mb_ucfirst(trim($request['treatment']), "UTF-8", true),
+                'pending' => $request['pending'],
+                'sspd' => $request['sspd'],
+                'answer_date' => $request['answer_date'],
+                'rta_niu' => $request['rta_niu'],
+                'date_notification' => $request['date_notification'],
+                'department_code' => $request['department_code'],
+                'municipality_code' => $request['municipality_code'],
+                'settlement_type' => $request['settlement_type'],
+                'causal_detail_idcausal_detail' => $request['causal_detail_idcausal_detail'],
+                'answer_pqr_idanswer_pqr' => $request['answer_pqr_idanswer_pqr'],
+                'procedure_pqr_idprocedure_pqr' => $request['procedure_pqr_idprocedure_pqr'],
+                'notification_pqr_idnotification_pqr' => $request['notification_pqr_idnotification_pqr'],
+                'user_update' => $request['user_update']
+            ]);
+            $pqr->save();
+            Session::flash('message', 'Pqr editada.');
+            return Redirect::to('/pqr');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Hubo un problema al editar la Pqr. Por favor, inténtalo de nuevo.');
+            return Redirect::to('/pqr');
+        }
     }
 
     public function destroy($idpqr)
     {
         try {
-        Pqr::destroy($idpqr);
-        Session::flash('message', 'Pqr eliminada.');
-        return Redirect::to('/pqr');
-    } catch (\Exception $e) {
-        Session::flash('error', 'Hubo un problema al eliminar la Pqr. Por favor, inténtalo de nuevo.');
-        return Redirect::to('/pqr');
-    }
+            Pqr::destroy($idpqr);
+            Session::flash('message', 'Pqr eliminada.');
+            return Redirect::to('/pqr');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Hubo un problema al eliminar la Pqr. Por favor, inténtalo de nuevo.');
+            return Redirect::to('/pqr');
+        }
     }
 
     //Convertir solo la primera letra en mayuscula de una texto o parrafo.

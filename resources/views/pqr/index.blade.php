@@ -8,10 +8,17 @@
                 <!-- Blog Post -->
                 <!-- Title -->
                 <h1>Lista de pqr</h1>
-                <hr> @if(Session::has('message'))
+                <hr>
+                @if(Session::has('message'))
                 <div class="alert alert-success alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     {{Session::get('message')}}
+                </div>
+                @endif
+                @if(Session::has('error'))
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{Session::get('error')}}
                 </div>
                 @endif
 
@@ -59,17 +66,17 @@
                             //se imprime para verificar que las fechas resultantes sean acorde a los calculos realizados
                             //echo $fecha_actual;
                             if($entrega<$fecha_actual){ 
-                               $Fecha_color = '#DD0000';//si es mayor color rojo
+                            $Fecha_color = '#DD0000';//si es mayor color rojo
                             }
                             else{
-                               $Fecha_color = '#000';//si es menor color negro
+                            $Fecha_color = '#000';//si es menor color negro
                             }
     
                             $fecha= $fecha1;
                             $segundos=strtotime('now') - strtotime($fecha);
                             $diferencia_dias=intval($segundos/60/60/24);
                             echo "<div style=color:$Fecha_color;>La cantidad de días entre el ".$fecha." y hoy es <b>".$diferencia_dias."</b></div>";
-                          ?>
+                        ?>
                         </td>
                         <td>{{$pqr->pending}}</td>
 

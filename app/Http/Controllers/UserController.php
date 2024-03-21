@@ -43,6 +43,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        try {
         User::create([
             'name' => $request['name'],
             'role' => $request['role'],
@@ -51,6 +52,10 @@ class UserController extends Controller
         ]);
         Session::flash('message', 'Usuario Creado Correctamente');
         return Redirect::to('/user');
+    } catch (\Exception $e) {
+        Session::flash('error', 'Hubo un problema al crear el usuario. Por favor, inténtalo de nuevo.');
+        return Redirect::to('/user');
+    }
     }
 
     /**
@@ -87,11 +92,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        try {
         $user = User::find($id); //se busca por id
         $user->fill($request->all());
         $user->save();
         Session::flash('message', 'Usuario Actualizado Correctamente');
         return Redirect::to('/user');
+    } catch (\Exception $e) {
+        Session::flash('error', 'Hubo un problema al actualizar el usuario. Por favor, inténtalo de nuevo.');
+        return Redirect::to('/user');
+    }
     }
 
     /**
@@ -102,8 +112,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        try {
         User::destroy($id);
         Session::flash('message', 'Usuario Eliminado Correctamente');
         return Redirect::to('/user');
+    } catch (\Exception $e) {
+        Session::flash('error', 'Hubo un problema al eliminar el usuario. Por favor, inténtalo de nuevo.');
+        return Redirect::to('/user');
+    }
     }
 }

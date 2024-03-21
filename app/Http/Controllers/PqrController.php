@@ -47,6 +47,7 @@ class PqrController extends Controller
 
     public function store(Request $request)
     {
+        try {
         Pqr::create([
             'month' => $request['month'],
             'niu' => $request['niu'],
@@ -79,6 +80,10 @@ class PqrController extends Controller
         ]);
         Session::flash('message', 'Pqr creada.');
         return Redirect::to('/pqr');
+    } catch (\Exception $e) {
+        Session::flash('error', 'Hubo un problema al eliminar la Pqr. Por favor, inténtalo de nuevo.');
+        return Redirect::to('/pqr');
+    }
     }
 
     public function show($idpqr)
@@ -117,6 +122,7 @@ class PqrController extends Controller
 
     public function update(Request $request, $idpqr)
     {
+        try {
         $pqr = Pqr::find($idpqr); //se busca por id
         $pqr->fill([
             'month' => $request['month'],
@@ -148,13 +154,22 @@ class PqrController extends Controller
         $pqr->save();
         Session::flash('message', 'Pqr editada.');
         return Redirect::to('/pqr');
+    } catch (\Exception $e) {
+        Session::flash('error', 'Hubo un problema al editar la Pqr. Por favor, inténtalo de nuevo.');
+        return Redirect::to('/pqr');
+    }
     }
 
     public function destroy($idpqr)
     {
+        try {
         Pqr::destroy($idpqr);
         Session::flash('message', 'Pqr eliminada.');
         return Redirect::to('/pqr');
+    } catch (\Exception $e) {
+        Session::flash('error', 'Hubo un problema al eliminar la Pqr. Por favor, inténtalo de nuevo.');
+        return Redirect::to('/pqr');
+    }
     }
 
     //Convertir solo la primera letra en mayuscula de una texto o parrafo.

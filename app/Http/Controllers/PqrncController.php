@@ -45,6 +45,7 @@ class PqrncController extends Controller
 
     public function store(Request $request)
     {
+        try {
         Pqrnc::create([
             'niu' => $this->mb_ucfirst(trim($request['niu']), "UTF-8", true),
             'user' => $this->mb_ucfirst(trim($request['user']), "UTF-8", true),
@@ -67,6 +68,10 @@ class PqrncController extends Controller
         ]);
         Session::flash('message', 'Pqrnc creada.');
         return Redirect::to('/pqrnc');
+    } catch (\Exception $e) {
+        Session::flash('error', 'Hubo un problema al crear la Pqrnc. Por favor, inténtalo de nuevo.');
+        return Redirect::to('/pqrnc');
+    }
     }
 
     public function show($idpqrnc)
@@ -97,6 +102,7 @@ class PqrncController extends Controller
 
     public function update(Request $request, $idpqrnc)
     {
+        try {
         $pqrnc = Pqrnc::find($idpqrnc);
         $pqrnc->fill([
             'niu' => $this->mb_ucfirst(trim($request['niu']), "UTF-8", true),
@@ -116,13 +122,22 @@ class PqrncController extends Controller
         $pqrnc->save();
         Session::flash('message', 'Pqrnc editada.');
         return Redirect::to('/pqrnc');
+    } catch (\Exception $e) {
+        Session::flash('error', 'Hubo un problema al editar la Pqrnc. Por favor, inténtalo de nuevo.');
+        return Redirect::to('/pqrnc');
+    }
     }
 
     public function destroy($idpqrnc)
     {
+        try {
         Pqrnc::destroy($idpqrnc);
         Session::flash('message', 'Pqrnc eliminada.');
         return Redirect::to('/pqrnc');
+    } catch (\Exception $e) {
+        Session::flash('error', 'Hubo un problema al eliminar la Pqrnc. Por favor, inténtalo de nuevo.');
+        return Redirect::to('/pqrnc');
+    }
     }
 
     //Convertir solo la primera letra en mayuscula de una texto o parrafo.

@@ -50,14 +50,20 @@
 <div class="form-group">
     <label class="col-md-4 control-label">Nombre de titular (*)</label>
     <div class="col-md-6">
-        {!!Form::text('name_holder',null,['class'=>'form-control','placeholder'=>'Ingresa el nombre del titular', 'id'=>'name_holder', 'required'])!!}
+        <div class="input-group">
+            {!!Form::text('name_holder',null,['class'=>'form-control','placeholder'=>'Ingresa el nombre del titular', 'id'=>'name_holder', 'required', 'readonly'])!!}
+            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
+        </div>
     </div>
 </div>
 
 <div class="form-group">
     <label class="col-md-4 control-label">Dirección (*)</label>
     <div class="col-md-6">
-        {!!Form::text('address',null,['class'=>'form-control','placeholder'=>'Ingresa la dirección', 'id'=>'address', 'required'])!!}
+        <div class="input-group">
+            {!!Form::text('address',null,['class'=>'form-control','placeholder'=>'Ingresa la dirección', 'id'=>'address', 'required', 'readonly'])!!}
+            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
+        </div>
     </div>
 </div>
 

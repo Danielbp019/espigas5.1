@@ -55,9 +55,52 @@
     <!-- /.container -->
 
     <script>
+        var $j = jQuery.noConflict();
+        $j(document).ready(function() {
+            $j("#niu").autocomplete({
+                source: function(request, response) {
+                    var term = $j("#niu").val();
+                    // Verificar si el término es demasiado corto
+                    if (term.length < 2) {
+                        return;
+                    }
+                    $j.ajax({
+                        url: "{{ url('buscarcodigo') }}",
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            term: term
+                        },
+                        success: function(data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 2,
+                select: function(event, ui) {
+                    // Obtener el token CSRF
+                    var token = "{{ csrf_token() }}";
+                    $j.ajax({
+                        url: "{{ url('valores') }}",
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            codigo: ui.item.value,
+                            _token: token // Enviar el token CSRF
+                        }
+                    }).done(function(respuesta) {
+                        $j("#name_holder").val(respuesta.usuario);
+                        $j("#address").val(respuesta.direccion);
+                        $j("#bill").val(respuesta.factura);
+                    });
+                }
+            });
+        });
+
         function abrir(url) {
             open(url, '', 'top=400,left=500,width=800,height=400');
         }
     </script>
+
     @endsection
 <?php } ?>

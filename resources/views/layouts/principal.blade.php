@@ -81,7 +81,7 @@
                     <!--vacio-->
                 </div>
                 <div class="col-md-4">
-                    <p>Sistema Espigas</p>
+                    <p style="text-align: right">Sistema Espigas</p>
                 </div>
             </div>
         </footer>

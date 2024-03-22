@@ -16,7 +16,10 @@ class AutocompleteController extends Controller
     {
         $term = $request->input('term');
         // Obtener una colección de resultados en lugar de un array
-        $codigos = DB::table('planilla')->where('codigo', 'LIKE', "%$term%")->get();
+        $codigos = DB::table('planilla')
+            ->where('codigo', 'LIKE', "%$term%")
+            ->take(10)
+            ->get();
         // Verificar si la colección está vacía
         if (count($codigos) === 0) {
             return response()->json([]); // Devolver un arreglo vacío si no hay resultados

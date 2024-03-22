@@ -1,26 +1,32 @@
-<div class="form-group">
-    <label class="col-md-4 control-label">Niu o CC(*)</label>
-    <div class="col-md-6">
-        {!!Form::text('niu',null,['class'=>'form-control','placeholder'=>'Ingresa el NIU o CC', 'id'=>'niu', 'required'])!!}
-    </div>
-</div>
+<div class="panel panel-primary">
+    <div class="panel-heading"><strong>Datos Titular</strong></div>
+    <div class="panel-body">
 
-<div class="form-group">
-    <label class="col-md-4 control-label">Nombre de titular(*)</label>
-    <div class="col-md-6">
-        <div class="input-group">
-            {!!Form::text('user',null,['class'=>'form-control','placeholder'=>'Ingrese el nombre del titular', 'id'=>'user', 'required', 'readonly'])!!}
-            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Niu (*)</label>
+            <div class="col-md-6">
+                {!!Form::text('niu',null,['class'=>'form-control','placeholder'=>'Ingresa el NIU', 'id'=>'niu', 'required'])!!}
+            </div>
         </div>
-    </div>
-</div>
 
-<div class="form-group">
-    <label class="col-md-4 control-label">Dirección(*)</label>
-    <div class="col-md-6">
-        <div class="input-group">
-            {!!Form::text('address',null,['class'=>'form-control','placeholder'=>'Ingrese la dirección', 'id'=>'address', 'required', 'readonly'])!!}
-            <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Nombre de titular(*)</label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    {!!Form::text('user',null,['class'=>'form-control','placeholder'=>'Ingrese el nombre del titular', 'id'=>'user', 'required', 'readonly'])!!}
+                    <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Dirección(*)</label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    {!!Form::text('address',null,['class'=>'form-control','placeholder'=>'Ingrese la dirección', 'id'=>'address', 'required', 'readonly'])!!}
+                    <span class="input-group-addon"><i class="fa fa-ban" aria-hidden="true" title="No editable"></i> </span>
+                </div>
+            </div>
         </div>
     </div>
 </div>

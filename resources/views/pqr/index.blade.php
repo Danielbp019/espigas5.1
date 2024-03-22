@@ -56,27 +56,26 @@
                         <td>{{$pqr->additional_information}}</td>
                         <td>
                             <?php
-                            $fecha1 = $pqr['date'];//valor de blade a php
-                            $entrega = strtotime ( '+12 day' , strtotime ( $fecha1 ) ) ; 
-                            $entrega = date ( 'Y-m-d' , $entrega ); 
+                            $fecha1 = $pqr['date']; //valor de blade a php
+                            $entrega = strtotime('+12 day', strtotime($fecha1));
+                            $entrega = date('Y-m-d', $entrega);
                             //se imprime, fecha actual mas 12 dias 
                             //echo $entrega;
-                            $fecha_actual = strtotime(date("Y-m-d H:i:s") );
-                            $fecha_actual = date ('Y-m-d' , $fecha_actual);
+                            $fecha_actual = strtotime(date("Y-m-d H:i:s"));
+                            $fecha_actual = date('Y-m-d', $fecha_actual);
                             //se imprime para verificar que las fechas resultantes sean acorde a los calculos realizados
                             //echo $fecha_actual;
-                            if($entrega<$fecha_actual){ 
-                            $Fecha_color = '#DD0000';//si es mayor color rojo
+                            if ($entrega < $fecha_actual) {
+                                $Fecha_color = '#DD0000'; //si es mayor color rojo
+                            } else {
+                                $Fecha_color = '#000'; //si es menor color negro
                             }
-                            else{
-                            $Fecha_color = '#000';//si es menor color negro
-                            }
-    
-                            $fecha= $fecha1;
-                            $segundos=strtotime('now') - strtotime($fecha);
-                            $diferencia_dias=intval($segundos/60/60/24);
-                            echo "<div style=color:$Fecha_color;>La cantidad de días entre el ".$fecha." y hoy es <b>".$diferencia_dias."</b></div>";
-                        ?>
+
+                            $fecha = $fecha1;
+                            $segundos = strtotime('now') - strtotime($fecha);
+                            $diferencia_dias = intval($segundos / 60 / 60 / 24);
+                            echo "<div style=color:$Fecha_color;>La cantidad de días entre el " . $fecha . " y hoy es <b>" . $diferencia_dias . "</b></div>";
+                            ?>
                         </td>
                         <td>{{$pqr->pending}}</td>
 
@@ -100,4 +99,4 @@
     </div>
     <!-- /.container -->
     @endsection
-    <?php }?>
+<?php } ?>

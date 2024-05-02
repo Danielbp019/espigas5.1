@@ -65,9 +65,12 @@ class PlanillaController extends Controller
             ini_set('memory_limit', '512M');
             $path = $request->file('csv_file')->move(storage_path(), 'uploaded.csv');
 
+            $dataToInsert = []; // Almacena los datos que se insertarán
+            $batchSize = 500; // Define el tamaño del lote
+
             if (($handle = fopen($path, "r")) !== FALSE) {
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                    DB::table('planilla')->insert([
+                    $dataToInsert[] = [
                         'nir' => $data[0],
                         'codigo' => $data[1],
                         'nit' => $data[2],
@@ -108,9 +111,18 @@ class PlanillaController extends Controller
                         'vlr_cuota' => $data[37],
                         'otro1' => $data[38],
                         'otros2' => $data[39]
-                    ]);
+                    ];
+                    // Si hemos alcanzado el tamaño del lote, insertamos los datos
+                    if (count($dataToInsert) >= $batchSize) {
+                        DB::table('planilla')->insert($dataToInsert);
+                        $dataToInsert = []; // Vaciamos el array para el próximo lote
+                    }
                 }
                 fclose($handle);
+                // Insertamos cualquier dato restante que no haya sido insertado aún
+                if (!empty($dataToInsert)) {
+                    DB::table('planilla')->insert($dataToInsert);
+                }
             }
 
             Session::flash('message', 'CSV cargado.');

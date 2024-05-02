@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                <i class="fa fa-upload" aria-hidden="true"></i>
                                 Subir al servidor
                             </button>
                         </div>
@@ -37,6 +37,17 @@
                     </div>
                 </div>
                 {!!Form::close()!!}
+                <hr>
+
+                <form method="get" action="{{ route('planilla.show') }}" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Exportar Planilla</label>
+                        <div class="col-md-6">
+                            <button type="submit" onclick="return confirm('¿Seguro que desea exportar?')" class="btn btn-success"><i class="fa fa-cloud-download" aria-hidden="true"></i> Exportar Planilla</button>
+                        </div>
+                    </div>
+                </form>
+
             </div>
             <div class="col-md-4"><!-- Side Widget Well -->
                 <div class="well">

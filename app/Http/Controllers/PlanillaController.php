@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Planilla;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Redirect;
 use Session;
 use DB;
@@ -139,9 +140,21 @@ class PlanillaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        // Descargar planilla
+        $table = DB::table('planilla')->get();
+        $filename = "planilla.csv";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array_keys((array) $table[0]));
+        foreach ($table as $row) {
+            fputcsv($handle, (array) $row);
+        }
+        fclose($handle);
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+        return Response::download($filename, 'planilla.csv', $headers);
     }
 
     /**

@@ -47,63 +47,72 @@ class PlanillaController extends Controller
      */
     public function store(Request $request)
     {
-        // Subida del csv, validar que el archivo se haya subido correctamente
-/*         $validator = Validator::make($request->all(), [
-            'csv_file' => 'required|mimes:csv'
+        $validator = Validator::make($request->all(), [
+            'csv_file' => 'required|mimes:csv,txt'
         ]);
+
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        } */
+            // Obtén los mensajes de error
+            $errors = $validator->errors()->all();
+            // Conviértelos en una cadena
+            $errorMessage = implode(', ', $errors);
+            Session::flash('error', 'Hubo un problema al cargar el CSV: ' . $errorMessage);
+            return Redirect::to('/planilla');
+        }
 
         try {
-            // Abrir el archivo CSV
-            $path = $request->file('csv_file')->getRealPath();
-            $data = array_map('str_getcsv', file($path));
-            // Recorrer cada fila del archivo CSV y guardarla en la base de datos
-            foreach ($data as $row) {
-                DB::table('planilla')->insert([
-                    'nir' => $row[0],
-                    'codigo' => $row[1],
-                    'nit' => $row[2],
-                    'usuario' => $row[3],
-                    'direccion' => $row[4],
-                    'barrio' => $row[5],
-                    'estrato' => $row[6],
-                    'tipo_servicio' => $row[7],
-                    'factura' => $row[8],
-                    'medidor' => $row[9],
-                    'lec_anterior' => $row[10],
-                    'lec_actual' => $row[11],
-                    'consumo' => $row[12],
-                    'promedio' => $row[13],
-                    'm1' => $row[14],
-                    'm2' => $row[15],
-                    'm3' => $row[16],
-                    'm4' => $row[17],
-                    'm5' => $row[18],
-                    'm6' => $row[19],
-                    'valor' => $row[20],
-                    'atraso' => $row[21],
-                    'mes' => $row[22],
-                    'año' => $row[23],
-                    'pago_anterior' => $row[24],
-                    'sdo_cartera' => $row[25],
-                    'ctas_pagas' => $row[26],
-                    'cta_pagar' => $row[27],
-                    'c_fijo' => $row[28],
-                    'vlr_consumo' => $row[29],
-                    'contribu' => $row[30],
-                    'subsidio' => $row[31],
-                    'recone' => $row[32],
-                    'reinsta' => $row[33],
-                    'sancion' => $row[34],
-                    'int_mora' => $row[35],
-                    'deuda_p' => $row[36],
-                    'vlr_cuota' => $row[37],
-                    'otro1' => $row[38],
-                    'otros2' => $row[39],
-                ]);
+            set_time_limit(300);
+            ini_set('memory_limit', '512M');
+            $path = $request->file('csv_file')->move(storage_path(), 'uploaded.csv');
+
+            if (($handle = fopen($path, "r")) !== FALSE) {
+                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                    DB::table('planilla')->insert([
+                        'nir' => $data[0],
+                        'codigo' => $data[1],
+                        'nit' => $data[2],
+                        'usuario' => $data[3],
+                        'direccion' => $data[4],
+                        'barrio' => $data[5],
+                        'estrato' => $data[6],
+                        'tipo_servicio' => $data[7],
+                        'factura' => $data[8],
+                        'medidor' => $data[9],
+                        'lec_anterior' => $data[10],
+                        'lec_actual' => $data[11],
+                        'consumo' => $data[12],
+                        'promedio' => $data[13],
+                        'm1' => $data[14],
+                        'm2' => $data[15],
+                        'm3' => $data[16],
+                        'm4' => $data[17],
+                        'm5' => $data[18],
+                        'm6' => $data[19],
+                        'valor' => $data[20],
+                        'atraso' => $data[21],
+                        'mes' => $data[22],
+                        'año' => $data[23],
+                        'pago_anterior' => $data[24],
+                        'sdo_cartera' => $data[25],
+                        'ctas_pagas' => $data[26],
+                        'cta_pagar' => $data[27],
+                        'c_fijo' => $data[28],
+                        'vlr_consumo' => $data[29],
+                        'contribu' => $data[30],
+                        'subsidio' => $data[31],
+                        'recone' => $data[32],
+                        'reinsta' => $data[33],
+                        'sancion' => $data[34],
+                        'int_mora' => $data[35],
+                        'deuda_p' => $data[36],
+                        'vlr_cuota' => $data[37],
+                        'otro1' => $data[38],
+                        'otros2' => $data[39]
+                    ]);
+                }
+                fclose($handle);
             }
+
             Session::flash('message', 'CSV cargado.');
             return Redirect::to('/planilla');
         } catch (\Exception $e) {

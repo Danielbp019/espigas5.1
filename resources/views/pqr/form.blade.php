@@ -99,7 +99,9 @@
         <div class="input-group">
             {!!Form::select('causal_detail_idcausal_detail', $causal_detail, null, ['class'=>'form-control', 'placeholder' => 'Seleccione...', 'id'=>'causal_detail_idcausal_detail', 'required'])!!}
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button" onclick="window.open('{{ asset('help/causales_2016.pdf') }}', '_blank')" ><i class="fa fa-question" aria-hidden="true" title="Ayuda"></i></button>
+                <a href="{{ asset('help/causales_2016.pdf') }}" target="_blank" class="btn btn-default">
+                    <i class="fa fa-question" aria-hidden="true" title="Ayuda"></i>
+                </a>
             </span>
         </div>
     </div>

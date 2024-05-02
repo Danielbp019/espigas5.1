@@ -11,6 +11,27 @@ body {
     /*color del texto*/
 }
 
+/*Centrar ventana modal*/
+.modal {
+    text-align: center;
+}
+
+.modal::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    margin-right: -4px;
+    vertical-align: middle;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/*End Centrar ventana modal*/
+
 .navbar-fixed-top .nav {
     padding: 15px 0;
 }

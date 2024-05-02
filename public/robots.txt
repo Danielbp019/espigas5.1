@@ -1,2 +1,14 @@
 User-agent: *
-Disallow:
+Disallow: /emergency/
+Disallow: /excelemergency/
+Disallow: /user/
+Disallow: /planilla/
+Disallow: /pqr/
+Disallow: /excelpqr/
+Disallow: /pqrnc/
+Disallow: /excelpqrnc/
+Disallow: /buscarcodigo/
+Disallow: /valores/
+Disallow: /home/
+Disallow: /auth/
+Disallow: /logout/

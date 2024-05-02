@@ -28,20 +28,6 @@
                 {!! Form::close() !!}
                 <hr>
             </div>
-            <!-- Blog Sidebar Widgets Column -->
-            <div class="col-md-4">
-                <!-- /.row -->
-                <!-- Side Widget Well -->
-                <div class="well">
-                    <h4>Notas</h4>
-                    <p>Los campos de fecha siempre deberán seguir el formato año, mes día. (año-mes-dia)</p>
-                    <p>Los campos de hora siempre deberán seguir el formato hora, minutos, segundos. (hora:minutos:segundos)</p>
-                    <p>Abre el enlace para consultar el niu, nombre de titular, dirección y factura.</p>
-                    <a href="javascript:abrir('{{route('planilla.index')}}')" role="button" class="btn btn-primary">Consulta planilla</a>
-                </div>
-                <!--    end well    -->
-            </div>
-            <!--end class-->
 
             <!--    menu    -->
             @include('menus.emergency')

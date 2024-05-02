@@ -10,8 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
  */
-Route::resource('select', 'PlanillaController@sel');
-
 Route::get('/', function () {
     return view('Auth\login');
 });
@@ -20,10 +18,8 @@ Route::get('/', function () {
 Route::resource('auth', 'Auth\AuthController');
 Route::get('logout', 'Auth\AuthController@logout');
 
-//como el home controller no existe se tipea en consola: php artisan make:controller HomeController --plain  , plain se usa para que no genere metodos entro del controlador
-
-Route::group(['middleware' => 'auth'], function () { //se ponen dentro de un grupo, asi no pueden entrar si no se logean
-
+Route::group(['middleware' => 'auth'], function () {
+    //se ponen dentro de un grupo, asi no pueden entrar si no se logean
     Route::get('home', [
         'uses' => 'HomeController@index',
         'as' => 'home',

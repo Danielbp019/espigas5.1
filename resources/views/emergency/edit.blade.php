@@ -29,16 +29,10 @@
                 {!!Form::close()!!} @endif
 
             </div>
-            <!-- Blog Sidebar Widgets Column -->
-            <div class="col-md-4">
-                <!-- /.row -->
-                <!-- Side Widget Well -->
-                <div class="well">
-                    <h4>Notas</h4>
-                    <p>Los campos de fecha siempre deberán seguir el formato año, mes día. (año-mes-dia)</p>
-                    <p>Los campos de hora siempre deberán seguir el formato hora, minutos, segundos. (hora:minutos:segundos)</p>
-                </div>
-            </div>
+
+            <!--    menu    -->
+            @include('menus.emergency')
+            <!--    end menu    -->
         </div>
         <!-- /.row -->
         <hr>

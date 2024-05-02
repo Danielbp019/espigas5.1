@@ -38,15 +38,15 @@
         <!-- Content Row -->
         <div class="row">
             @include('menus.emergency')
-            <!-- /.col-md-4 -->
-            @if(Auth::user()->role === 'admin') @include('menus.users') @endif
             @include('menus.pqr')
+            @include('menus.pqrnc')
         </div>
         <!-- /.row end -->
 
         <!-- Content Row -->
         <div class="row">
-            @include('menus.pqrnc')
+            @if(Auth::user()->role === 'admin') @include('menus.planilla') @endif
+            @if(Auth::user()->role === 'admin') @include('menus.users') @endif
         </div>
         <!-- /.row end -->
 

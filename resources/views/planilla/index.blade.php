@@ -5,6 +5,20 @@
         <div class="row">
             <!-- Blog Post Content Column -->
             <div class="col-lg-12">
+                <!-- Mensajes de error por sesion -->
+                @if(Session::has('message'))
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{Session::get('message')}}
+                </div>
+                @endif
+                @if(Session::has('error'))
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{Session::get('error')}}
+                </div>
+                @endif
+
                 <!-- buscador-->
                 {!!Form::model(Request::all(),['route'=>'planilla.index', 'method'=>'GET', 'class'=>'navbar-form pull-right'])!!}
                 <div class="input-group">
@@ -41,4 +55,4 @@
     </div>
     <!-- /.container -->
     @endsection
-    <?php }?>
+<?php } ?>

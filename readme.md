@@ -8,17 +8,17 @@ Sin base de datos, código abierto pero no libre, se prohíbe el uso, distribuci
 
 Usadas en el proyecto:
 
-- [php] - 7.3
+- [php] - 7.4
 - [laravel] - 5.1
 - [laravelcollective]
-- [Twitter Bootstrap]
+- [Bootstrap]
 - [maatwebsite/excel]
 - [jQuery]
-- [font-awesome]
+- [Font-awesome]
 - [Html5, CSS3]
-- [Composer] - No importa la version, es un manejador de archivos.
+- [Composer]
 
-## Installation
+## Instalación
 
 Se requiere primero importar los paquetes.
 

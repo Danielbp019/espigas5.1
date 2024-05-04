@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Archivo CSV</label>
                         <div class="col-md-6">
-                            <input type="file" name="csv_file" required />
+                            <input type="file" name="csv_file" accept=".csv" required />
                         </div>
                     </div>
 
